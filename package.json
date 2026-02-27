@@ -1,0 +1,21 @@
+{
+  "name": "saleor-script",
+  "version": "1.0.0",
+  "description": "Script to apply basic structures in new Saleor instance.",
+  "type": "module",
+  "scripts": {
+    "seed": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.4",
+    "cross-fetch": "^4.0.0",
+    "dotenv": "^16.4.7",
+    "graphql": "^16.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
