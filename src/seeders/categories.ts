@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { CATEGORY_CREATE } from '../mutations/category.js';
 import type { CategoryCreateResult, CategoryInput } from '../mutations/category.js';
-import type { SeederSection, CategoryConfig } from '../config/defaults.js';
+import type { SeederSection, CategoryConfig } from '../config/index.js';
 import { logSuccess, logError, executeMutation, slugify, type SeedContext } from './utils.js';
 
 async function createCategory(

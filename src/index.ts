@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { initAuth } from './apollo/apollo-client.js';
-import { config } from './config/defaults.js';
+import { config } from './config/index.js';
 import { createEmptyContext } from './seeders/utils.js';
 import { seedTaxClasses } from './seeders/taxClasses.js';
 import { seedWarehouses } from './seeders/warehouses.js';
@@ -13,7 +13,7 @@ import { seedCollections } from './seeders/collections.js';
 import { seedPageTypes } from './seeders/pageTypes.js';
 import { seedPages } from './seeders/pages.js';
 import { seedMenus } from './seeders/menus.js';
-import type { SeedConfig } from './config/defaults.js';
+import type { SeedConfig } from './config/index.js';
 
 // ---------------------------------------------------------------------------
 // CLI flag parsing

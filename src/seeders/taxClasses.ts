@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { TAX_CLASS_CREATE } from '../mutations/taxClass.js';
 import type { TaxClassCreateInput, TaxClassCreateResult } from '../mutations/taxClass.js';
-import type { SeederSection } from '../config/defaults.js';
+import type { SeederSection } from '../config/index.js';
 import { logSuccess, logError, executeMutation, type SeedContext } from './utils.js';
 
 export async function seedTaxClasses(

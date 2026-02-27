@@ -4,7 +4,7 @@ import type {
   PageTypeCreateResult,
   PageTypeAttributeAssignResult,
 } from '../mutations/pageType.js';
-import type { SeederSection, PageTypeConfig } from '../config/defaults.js';
+import type { SeederSection, PageTypeConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, slugify, type SeedContext } from './utils.js';
 
 export async function seedPageTypes(
