@@ -7,7 +7,7 @@ import type {
   ProductTypeCreateResult,
   ProductTypeAttributeAssignResult,
 } from '../mutations/productType.js';
-import type { SeederSection, ProductTypeConfig } from '../config/defaults.js';
+import type { SeederSection, ProductTypeConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, slugify, type SeedContext } from './utils.js';
 
 export async function seedProductTypes(

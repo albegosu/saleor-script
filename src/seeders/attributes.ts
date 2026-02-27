@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { ATTRIBUTE_CREATE } from '../mutations/attribute.js';
 import type { AttributeCreateInput, AttributeCreateResult } from '../mutations/attribute.js';
-import type { SeederSection } from '../config/defaults.js';
+import type { SeederSection } from '../config/index.js';
 import { logSuccess, logError, executeMutation, type SeedContext } from './utils.js';
 
 export async function seedAttributes(

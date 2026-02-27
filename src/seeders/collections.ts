@@ -7,7 +7,7 @@ import type {
   CollectionCreateResult,
   CollectionChannelListingUpdateResult,
 } from '../mutations/collection.js';
-import type { SeederSection, CollectionConfig } from '../config/defaults.js';
+import type { SeederSection, CollectionConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, slugify, type SeedContext } from './utils.js';
 
 export async function seedCollections(

@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { MENU_CREATE, MENU_ITEM_CREATE } from '../mutations/menu.js';
 import type { MenuCreateResult, MenuItemCreateResult } from '../mutations/menu.js';
-import type { SeederSection, MenuConfig, MenuItemConfig } from '../config/defaults.js';
+import type { SeederSection, MenuConfig, MenuItemConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, type SeedContext } from './utils.js';
 
 /**

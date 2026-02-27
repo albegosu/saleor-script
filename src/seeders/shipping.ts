@@ -9,7 +9,7 @@ import type {
   ShippingPriceCreateResult,
   ShippingMethodChannelListingUpdateResult,
 } from '../mutations/shipping.js';
-import type { SeederSection, ShippingZoneConfig } from '../config/defaults.js';
+import type { SeederSection, ShippingZoneConfig } from '../config/index.js';
 import { logSuccess, logError, executeMutation, type SeedContext } from './utils.js';
 
 export async function seedShipping(

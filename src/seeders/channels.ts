@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { CHANNEL_CREATE } from '../mutations/channel.js';
 import type { ChannelCreateInput, ChannelCreateResult } from '../mutations/channel.js';
-import type { SeederSection } from '../config/defaults.js';
+import type { SeederSection } from '../config/index.js';
 import { logSuccess, logError, executeMutation, type SeedContext } from './utils.js';
 
 export async function seedChannels(

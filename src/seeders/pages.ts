@@ -1,7 +1,7 @@
 import { apollo } from '../apollo/apollo-client.js';
 import { PAGE_CREATE } from '../mutations/page.js';
 import type { PageCreateResult } from '../mutations/page.js';
-import type { SeederSection, PageConfig } from '../config/defaults.js';
+import type { SeederSection, PageConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, slugify, type SeedContext } from './utils.js';
 
 export async function seedPages(
