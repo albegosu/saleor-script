@@ -133,5 +133,33 @@ export const attributes: SeederSection<AttributeCreateInput> = {
       valueRequired: true,
       visibleInStorefront: true,
     },
+    // Product attributes
+    {
+      name: 'SKU',
+      slug: 'sku',
+      type: 'PRODUCT_TYPE',
+      entityType: 'PRODUCT',
+      inputType: 'PLAIN_TEXT',
+      valueRequired: false,
+      visibleInStorefront: false,
+    },
+    {
+      name: 'Stock total',
+      slug: 'stock-total',
+      type: 'PRODUCT_TYPE',
+      entityType: 'PRODUCT',
+      inputType: 'NUMERIC',
+      valueRequired: false,
+      visibleInStorefront: false,
+    },
+    {
+      name: 'Product - Fabricante',
+      slug: 'product-fabricante',
+      type: 'PRODUCT_TYPE',
+      entityType: 'PAGE',
+      inputType: 'REFERENCE',
+      valueRequired: false,
+      visibleInStorefront: true,
+    },
   ],
 };
