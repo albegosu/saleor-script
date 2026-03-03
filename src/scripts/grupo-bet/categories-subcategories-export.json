@@ -1,0 +1,351 @@
+{
+    "data": {
+      "categories": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "WyIyMSJd"
+        },
+        "edges": [
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MQ==",
+              "name": "Categoría test",
+              "slug": "default-category",
+              "description": null,
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6Mg==",
+              "name": "Baterías",
+              "slug": "baterias",
+              "description": "{\"time\": 1766327397462, \"blocks\": [{\"id\": \"p1CuVU7MHX\", \"data\": {\"text\": \"Una bater\\u00eda solar, tambi\\u00e9n conocida como bater\\u00edas de almacenamiento o bater\\u00eda fotovoltaica, es un dispositivo esencial en sistemas solares que permite almacenar la energ\\u00eda generada por los paneles solares para su uso posterior. Un sistema de acumulaci\\u00f3n es particularmente \\u00fatil para garantizar un suministro constante de energ\\u00eda durante la noche o en d\\u00edas nublados, y para maximizar la autosuficiencia energ\\u00e9tica de una instalaci\\u00f3n.\"}, \"type\": \"paragraph\"}, {\"id\": \"nE2sG3YhNI\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar una bater\\u00eda solar, descubre la mejor selecci\\u00f3n de bater\\u00edas de los fabricantes l\\u00edderes en el sector fotovoltaico como ByD, Enphase, Fox, Huawei, TAB Batteries, Victron Energy\\u2026&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6Mw==",
+              "name": "Paneles Solares",
+              "slug": "paneles-solares",
+              "description": "{\"time\": 1766324674739, \"blocks\": [{\"id\": \"20Vq6dMlEZ\", \"data\": {\"text\": \"Los paneles solares, o m\\u00f3dulos fotovoltaicos, son los elementos de nuestra instalaci\\u00f3n fotovoltaica encargados de transformar la luz solar en electricidad \\u00fatil. El panel solar est\\u00e1 compuesto por c\\u00e9lulas solares que capturan la energ\\u00eda del sol y la convierten en corriente el\\u00e9ctrica, ofreciendo una soluci\\u00f3n energ\\u00e9tica limpia, sostenible y eficiente para tus proyectos fotovoltaicos.\"}, \"type\": \"paragraph\"}, {\"id\": \"XunrX1GbjI\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar paneles solares, descubre la mejor selecci\\u00f3n de m\\u00f3dulos fotovoltaicos de los fabricantes l\\u00edderes en el sector como Aiko, Ja Solar, Longi, Victron Energy\\u2026&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": {
+                "url": "https://backoffice.internal.betsolar.cloud/thumbnail/Q2F0ZWdvcnk6Mw==/1024/",
+                "alt": ""
+              },
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6NA==",
+                      "name": "Módulos fotovoltaicos",
+                      "slug": "paneles-solares-2",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6Mw=="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6NQ==",
+                      "name": "Acc. Paneles Solares",
+                      "slug": "acc-paneles-solares",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6Mw=="
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6Ng==",
+              "name": "Inversores",
+              "slug": "inversores",
+              "description": "{\"time\": 1764253384239, \"blocks\": [{\"id\": \"M0VEji1-5M\", \"data\": {\"text\": \"Los inversores solares, tambi\\u00e9n conocido como inversor fotovoltaico, es un componente esencial en cualquier proyecto de energ\\u00eda solar. Su principal funci\\u00f3n es convertir la corriente continua (CC) generada por los paneles solares en corriente alterna (CA), que es la forma de electricidad mayoritariamente utilizada en hogares y empresas.\"}, \"type\": \"paragraph\"}, {\"id\": \"ikL0FcHmZX\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar un inversor solar, descubre la mejor selecci\\u00f3n de inversores de los fabricantes l\\u00edderes en el sector fotovoltaico como Enphase, Fox, Fronius, Huawei, TAB Batteries, Victron Energy\\u2026&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6Nw==",
+                      "name": "Inversores",
+                      "slug": "inversores-2",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6Ng=="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6OA==",
+                      "name": "Acc. Inversores",
+                      "slug": "acc-inversores",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6Ng=="
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6OQ==",
+              "name": "Estructura Paneles Solares",
+              "slug": "estructura-paneles-solares",
+              "description": "{\"time\": 1764253434472, \"blocks\": [{\"id\": \"OXjHwl_hci\", \"data\": {\"text\": \"Una estructura para paneles solares, tambi\\u00e9n conocida como soporte para panel solar o sistema de montaje para m\\u00f3dulos fotovoltaicos, es un componente crucial en cualquier instalaci\\u00f3n fotovoltaica. La funci\\u00f3n principal de la estructura es proporcionar un soporte seguro y estable para los paneles solares, asegurando su correcta orientaci\\u00f3n e inclinaci\\u00f3n para maximizar la captaci\\u00f3n de luz solar y la eficiencia del sistema fotovoltaico.\"}, \"type\": \"paragraph\"}, {\"id\": \"rV5No2Vri7\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar una estructura panel solar, descubre la mejor selecci\\u00f3n de soportes de los fabricantes l\\u00edderes en el sector fotovoltaico como Soportes Solares, Sunfer\\u2026&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTA=",
+                      "name": "Estructura Paneles Solares",
+                      "slug": "estructura-paneles-solares-2",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6OQ=="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTE=",
+                      "name": "Acc. Estructuras Paneles Solares",
+                      "slug": "acc-estructuras-paneles-solares",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6OQ=="
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MTI=",
+              "name": "Cargador Coche Eléctrico",
+              "slug": "cargador-coche-electrico",
+              "description": "{\"time\": 1764253501021, \"blocks\": [{\"id\": \"-E21TfaBp6\", \"data\": {\"text\": \"Un cargador de coche el\\u00e9ctrico, tambi\\u00e9n conocido como estaci\\u00f3n de carga de veh\\u00edculos el\\u00e9ctricos o EVSE (Electric Vehicle Supply Equipment), es un dispositivo dise\\u00f1ado para suministrar electricidad a un veh\\u00edculo el\\u00e9ctrico (EV) para recargar su bater\\u00eda. Este cargador de coche el\\u00e9ctrico es esencial para la infraestructura de veh\\u00edculos el\\u00e9ctricos y pueden instalarse en hogares, negocios y espacios p\\u00fablico.\"}, \"type\": \"paragraph\"}, {\"id\": \"aCJz2Os924\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar una estaci\\u00f3n de carga de veh\\u00edculos el\\u00e9ctricos, descubre la mejor selecci\\u00f3n de cargador coche el\\u00e9ctrico de los fabricantes l\\u00edderes en el sector fotovoltaico como Fronius, Huawei, Wallbox&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTM=",
+                      "name": "Cargador coche eléctrico",
+                      "slug": "cargador-coche-electrico-2",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6MTI="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTQ=",
+                      "name": "Acc. Cargador coche eléctrico",
+                      "slug": "acc-cargador-coche-electrico",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6MTI="
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MTU=",
+              "name": "Monitorización",
+              "slug": "monitorizacion",
+              "description": "{\"time\": 1764253550249, \"blocks\": [{\"id\": \"m6uKjnCjZb\", \"data\": {\"text\": \"Un sistema de monitorizaci\\u00f3n para paneles solares es una herramienta esencial que permite al instalador fotovoltaico y propietarios supervisar y gestionar el rendimiento de sus instalaciones solares en tiempo real. La monitorizaci\\u00f3n recopila, analiza y presenta datos sobre la producci\\u00f3n de energ\\u00eda, el estado del sistema fotovoltaico y otros par\\u00e1metros clave, facilitando la optimizaci\\u00f3n y el mantenimiento eficiente de la instalaci\\u00f3n.\"}, \"type\": \"paragraph\"}, {\"id\": \"gOgIC3do2E\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar un sistema de monitorizaci\\u00f3n, descubre la mejor selecci\\u00f3n de los fabricantes l\\u00edderes en el sector fotovoltaico como Huawei, Fronius, Victron Energy\\u2026&nbsp;\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MTY=",
+              "name": "Regulador de carga solar",
+              "slug": "regulador-de-carga-solar",
+              "description": "{\"time\": 1764253567477, \"blocks\": [{\"id\": \"yuYf9LjFzF\", \"data\": {\"text\": \"Un regulador de carga solar, tambi\\u00e9n conocido como controlador de carga fotovoltaico, es un componente esencial en un sistema de energ\\u00eda solar. La principal funci\\u00f3n del regulador de carga es regular el voltaje y la corriente provenientes de los paneles solares para evitar la sobrecarga o descarga profunda de las bater\\u00edas, garantizando as\\u00ed la eficiencia y la longevidad del sistema de almacenamiento de energ\\u00eda.\"}, \"type\": \"paragraph\"}, {\"id\": \"DHaBdz6C6s\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar un regulador, descubre la mejor selecci\\u00f3n de bater\\u00edas de los fabricantes l\\u00edderes en el sector fotovoltaico como Victron Energy\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MTc=",
+              "name": "Material eléctrico",
+              "slug": "material-electrico",
+              "description": "{\"time\": 1764253594021, \"blocks\": [{\"id\": \"ypmaHpi3nD\", \"data\": {\"text\": \"En una instalaci\\u00f3n fotovoltaica, los elementos de protecci\\u00f3n y el cableado son componentes cr\\u00edticos que garantizan la seguridad, eficiencia y durabilidad del sistema. Para los especialistas instaladores de sistemas fotovoltaicos, comprender y seleccionar adecuadamente estos elementos es esencial para cumplir con los est\\u00e1ndares de calidad y seguridad.\"}, \"type\": \"paragraph\"}, {\"id\": \"pMe3WoihZO\", \"data\": {\"text\": \"Si est\\u00e1s interesado en comprar cable fotovoltaico o elementos de protecci\\u00f3n, descubre la mejor selecci\\u00f3n de productos de los fabricantes l\\u00edderes en el sector fotovoltaico como MD\"}, \"type\": \"paragraph\"}], \"version\": \"2.30.7\"}",
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTg=",
+                      "name": "Protecciones y envolventes",
+                      "slug": "protecciones-y-envolventes",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6MTc="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MTk=",
+                      "name": " Cable",
+                      "slug": "cable",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6MTc="
+                      }
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "Q2F0ZWdvcnk6MjA=",
+                      "name": "Cuadros",
+                      "slug": "cuadros",
+                      "description": null,
+                      "seoTitle": "",
+                      "seoDescription": "",
+                      "backgroundImage": null,
+                      "level": 1,
+                      "parent": {
+                        "id": "Q2F0ZWdvcnk6MTc="
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "Q2F0ZWdvcnk6MjE=",
+              "name": "OUTLET",
+              "slug": "outlet",
+              "description": null,
+              "seoTitle": "",
+              "seoDescription": "",
+              "backgroundImage": null,
+              "level": 0,
+              "parent": null,
+              "children": {
+                "edges": []
+              }
+            }
+          }
+        ]
+      }
+    },
+    "extensions": {
+      "cost": {
+        "requestedQueryCost": 303,
+        "maximumAvailable": 50000
+      }
+    }
+  }

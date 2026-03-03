@@ -1,0 +1,2116 @@
+{
+    "data": {
+      "attributes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "WyIwIiwgInZvbHRhamUtdiJd"
+        },
+        "edges": [
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM3",
+              "name": "Activo",
+              "slug": "activo",
+              "type": "PAGE_TYPE",
+              "inputType": "BOOLEAN",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI1",
+              "name": "Alto",
+              "slug": "alto",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI2",
+              "name": "Ancho",
+              "slug": "ancho",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI3",
+              "name": "Attribute test",
+              "slug": "attribute-test",
+              "type": "PAGE_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ1",
+                      "name": "1",
+                      "slug": "1",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ2",
+                      "name": "2",
+                      "slug": "2",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjIz",
+              "name": "Baterías Compatibles ",
+              "slug": "baterias-compatibles",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM5",
+                      "name": "BYD - LVS / LVL",
+                      "slug": "byd-lvs-lvl",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQw",
+                      "name": "BYD Battery-Box Premium HVS/HVM ",
+                      "slug": "byd-battery-box-premium-hvshvm",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQx",
+                      "name": "EP11",
+                      "slug": "ep11",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQy",
+                      "name": "EP12",
+                      "slug": "ep12",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQz",
+                      "name": "EP5",
+                      "slug": "ep5",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ0",
+                      "name": "EP6",
+                      "slug": "ep6",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE5",
+              "name": "Capacidad (Ah)",
+              "slug": "capacidad-ah",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE1",
+                      "name": "8",
+                      "slug": "8",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE2",
+                      "name": "14",
+                      "slug": "14",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE3",
+                      "name": "15",
+                      "slug": "15",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE4",
+                      "name": "22",
+                      "slug": "22",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE5",
+                      "name": "25",
+                      "slug": "25",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTIw",
+                      "name": "38",
+                      "slug": "38",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTIx",
+                      "name": "45",
+                      "slug": "45",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTIy",
+                      "name": "50",
+                      "slug": "50",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTIz",
+                      "name": "55",
+                      "slug": "55",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI0",
+                      "name": "60",
+                      "slug": "60",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI1",
+                      "name": "1200",
+                      "slug": "1200",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE=",
+              "name": "Capacidad (kWh)",
+              "slug": "capacidad-kwh",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MQ==",
+                      "name": "0,64",
+                      "slug": "064",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mg==",
+                      "name": "2,4",
+                      "slug": "24",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mw==",
+                      "name": "2,5",
+                      "slug": "25",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NA==",
+                      "name": "2,76",
+                      "slug": "276",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NQ==",
+                      "name": "3,36",
+                      "slug": "336",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Ng==",
+                      "name": "3,5",
+                      "slug": "35",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Nw==",
+                      "name": "4",
+                      "slug": "4",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OA==",
+                      "name": "5",
+                      "slug": "5",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OQ==",
+                      "name": "5,18",
+                      "slug": "518",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA=",
+                      "name": "10",
+                      "slug": "10",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE=",
+                      "name": "10,24",
+                      "slug": "1024",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI=",
+                      "name": "12",
+                      "slug": "12",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM=",
+                      "name": "13,5",
+                      "slug": "135",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ=",
+                      "name": "15",
+                      "slug": "15",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTU=",
+                      "name": "20",
+                      "slug": "20",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTY=",
+                      "name": "25",
+                      "slug": "25-2",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTc=",
+                      "name": "85",
+                      "slug": "85",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTg=",
+                      "name": "100",
+                      "slug": "100",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTk=",
+                      "name": "215",
+                      "slug": "215",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE2",
+              "name": "Coeficiente Pmax (%/ºC)",
+              "slug": "coeficiente-temperatura-pmax",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA3",
+                      "name": "-0,260",
+                      "slug": "0260",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA4",
+                      "name": "-0,280",
+                      "slug": "0280",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA5",
+                      "name": "-0,290",
+                      "slug": "0290",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTEw",
+                      "name": "-0,300",
+                      "slug": "0300",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTEx",
+                      "name": "-0,340",
+                      "slug": "0340",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTEy",
+                      "name": "-0,350",
+                      "slug": "0350",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjIw",
+              "name": "Color",
+              "slug": "color",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI2",
+                      "name": "Azul",
+                      "slug": "azul",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI3",
+                      "name": "Gris",
+                      "slug": "gris",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI4",
+                      "name": "Marrón",
+                      "slug": "marron",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTI5",
+                      "name": "Negro",
+                      "slug": "negro",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTMw",
+                      "name": "Rojo",
+                      "slug": "rojo",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTMx",
+                      "name": "Verde/Amarillo",
+                      "slug": "verdeamarillo",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjMy",
+              "name": "Content - Post",
+              "slug": "content-post",
+              "type": "PAGE_TYPE",
+              "inputType": "RICH_TEXT",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjIy",
+              "name": "Diámetro del cable (mm)",
+              "slug": "diametro-cable-mm",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM1",
+                      "name": "4",
+                      "slug": "4",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM2",
+                      "name": "6",
+                      "slug": "6",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM3",
+                      "name": "10",
+                      "slug": "10",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM4",
+                      "name": "16",
+                      "slug": "16",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE4",
+              "name": "Dimensiones",
+              "slug": "dimensiones",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjk=",
+              "name": "Disposición",
+              "slug": "disposicion",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTg=",
+                      "name": "Horizontal",
+                      "slug": "horizontal",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTk=",
+                      "name": "Vertical",
+                      "slug": "vertical",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjEz",
+              "name": "Eficiencia módulo (%)",
+              "slug": "eficiencia-modulo-porcentaje",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODM=",
+                      "name": "20,7",
+                      "slug": "207",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODQ=",
+                      "name": "20,9",
+                      "slug": "209",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE0",
+              "name": "Garantía",
+              "slug": "garantia",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODU=",
+                      "name": "2",
+                      "slug": "2",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODY=",
+                      "name": "3",
+                      "slug": "3",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODc=",
+                      "name": "5",
+                      "slug": "5",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODg=",
+                      "name": "7",
+                      "slug": "7",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODk=",
+                      "name": "10",
+                      "slug": "10",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTA=",
+                      "name": "12",
+                      "slug": "12",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTE=",
+                      "name": "15",
+                      "slug": "15",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTI=",
+                      "name": "25",
+                      "slug": "25",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTM=",
+                      "name": "30",
+                      "slug": "30",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM4",
+              "name": "Imagen",
+              "slug": "imagen",
+              "type": "PAGE_TYPE",
+              "inputType": "FILE",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI5",
+              "name": "Imagen - Post",
+              "slug": "imagen-post",
+              "type": "PAGE_TYPE",
+              "inputType": "FILE",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI=",
+              "name": "Intensidad carga/descarga (A)",
+              "slug": "intensidad-cargadescarga-a",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjA=",
+                      "name": "5",
+                      "slug": "5",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjE=",
+                      "name": "10",
+                      "slug": "10",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjI=",
+                      "name": "15",
+                      "slug": "15",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjM=",
+                      "name": "20",
+                      "slug": "20",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjQ=",
+                      "name": "25",
+                      "slug": "25",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjU=",
+                      "name": "30",
+                      "slug": "30",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MjY=",
+                      "name": "35",
+                      "slug": "35",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mjc=",
+                      "name": "45",
+                      "slug": "45",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mjg=",
+                      "name": "50",
+                      "slug": "50",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mjk=",
+                      "name": "60",
+                      "slug": "60",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzA=",
+                      "name": "70",
+                      "slug": "70",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzE=",
+                      "name": "85",
+                      "slug": "85",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzI=",
+                      "name": "100",
+                      "slug": "100",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzM=",
+                      "name": "200",
+                      "slug": "200",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI0",
+              "name": "Largo",
+              "slug": "largo",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM1",
+              "name": "Logo",
+              "slug": "logo",
+              "type": "PAGE_TYPE",
+              "inputType": "FILE",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjIx",
+              "name": "Longitud del cable (m)",
+              "slug": "longitud-cable-m",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTMy",
+                      "name": "100",
+                      "slug": "100",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTMz",
+                      "name": "200",
+                      "slug": "200",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTM0",
+                      "name": "500",
+                      "slug": "500",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjMz",
+              "name": "Marca",
+              "slug": "marca",
+              "type": "PAGE_TYPE",
+              "inputType": "PLAIN_TEXT",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE3",
+              "name": "Medida del módulo",
+              "slug": "medida-modulo",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTEz",
+                      "name": "402x476,5x148mm",
+                      "slug": "402x4765x148mm",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTE0",
+                      "name": "1722×1134×30mm",
+                      "slug": "1722x1134x30mm",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM0",
+              "name": "Mostrar en la home y pagina de fabricantes",
+              "slug": "mostrar-en-la-home-y-pagina-de-fabricantes",
+              "type": "PAGE_TYPE",
+              "inputType": "BOOLEAN",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjU=",
+              "name": "Número de módulo",
+              "slug": "numero-de-modulo",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mzg=",
+                      "name": "1",
+                      "slug": "1",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mzk=",
+                      "name": "2",
+                      "slug": "2",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDA=",
+                      "name": "3",
+                      "slug": "3",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDE=",
+                      "name": "4",
+                      "slug": "4",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDI=",
+                      "name": "5",
+                      "slug": "5",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDM=",
+                      "name": "6",
+                      "slug": "6",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDQ=",
+                      "name": "7",
+                      "slug": "7",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDU=",
+                      "name": "8",
+                      "slug": "8",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDY=",
+                      "name": "9",
+                      "slug": "9",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDc=",
+                      "name": "10",
+                      "slug": "10",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjE1",
+              "name": "Peso",
+              "slug": "peso",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTQ=",
+                      "name": "19,5",
+                      "slug": "195",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTU=",
+                      "name": "20,5",
+                      "slug": "205",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTY=",
+                      "name": "20,8",
+                      "slug": "208",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTc=",
+                      "name": "21,5",
+                      "slug": "215",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTg=",
+                      "name": "21,6",
+                      "slug": "216",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6OTk=",
+                      "name": "22",
+                      "slug": "22",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTAw",
+                      "name": "25,3",
+                      "slug": "253",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTAx",
+                      "name": "26",
+                      "slug": "26",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTAy",
+                      "name": "27,2",
+                      "slug": "272",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTAz",
+                      "name": "27,3",
+                      "slug": "273",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA0",
+                      "name": "27,5",
+                      "slug": "275",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA1",
+                      "name": "27,8",
+                      "slug": "278",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTA2",
+                      "name": "28",
+                      "slug": "28",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjEw",
+              "name": "Potencia Aparente (VA)",
+              "slug": "potencia-aparente-va",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjA=",
+                      "name": "250",
+                      "slug": "250",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjE=",
+                      "name": "375",
+                      "slug": "375",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjI=",
+                      "name": "500",
+                      "slug": "500",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjM=",
+                      "name": "800",
+                      "slug": "800",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjQ=",
+                      "name": "1200",
+                      "slug": "1200",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjU=",
+                      "name": "1600",
+                      "slug": "1600",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NjY=",
+                      "name": "2000",
+                      "slug": "2000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Njc=",
+                      "name": "3000",
+                      "slug": "3000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Njg=",
+                      "name": "5000",
+                      "slug": "5000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Njk=",
+                      "name": "6000",
+                      "slug": "6000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzA=",
+                      "name": "8000",
+                      "slug": "8000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzE=",
+                      "name": "10000",
+                      "slug": "10000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzI=",
+                      "name": "15000",
+                      "slug": "15000",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM=",
+              "name": "Potencia Nominal (kW)",
+              "slug": "potencia-nominal-kW",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzQ=",
+                      "name": "0,25",
+                      "slug": "025",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzU=",
+                      "name": "0,33",
+                      "slug": "033",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjQ=",
+              "name": "Potencia (W)",
+              "slug": "potencia-w",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MzY=",
+                      "name": "30",
+                      "slug": "30",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Mzc=",
+                      "name": "60",
+                      "slug": "60",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjM5",
+              "name": "Product - Fabricante",
+              "slug": "product-fabricante",
+              "type": "PRODUCT_TYPE",
+              "inputType": "REFERENCE",
+              "entityType": "PAGE",
+              "referenceTypes": {"name": "Fabricantes"},
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjQw",
+              "name": "SKU",
+              "slug": "sku",
+              "type": "PRODUCT_TYPE",
+              "inputType": "PLAIN_TEXT",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjQx",
+              "name": "Stock total",
+              "slug": "stock-total",
+              "type": "PRODUCT_TYPE",
+              "inputType": "NUMERIC",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjEy",
+              "name": "Tecnología módulo",
+              "slug": "tecnologia-modulo",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODE=",
+                      "name": "HPBC",
+                      "slug": "hpbc",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODI=",
+                      "name": "PERC",
+                      "slug": "perc",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjg=",
+              "name": "Tecnología módulo FV",
+              "slug": "tecnologia-modulo-fv",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTY=",
+                      "name": "Monocristalino",
+                      "slug": "monocristalino",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTc=",
+                      "name": "Policristalino",
+                      "slug": "policristalino",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjY=",
+              "name": "Tipo batería",
+              "slug": "tipo-bateria",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDg=",
+                      "name": "Alto voltaje",
+                      "slug": "alto-voltaje",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NDk=",
+                      "name": "Bajo voltaje",
+                      "slug": "bajo-voltaje",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTA=",
+                      "name": "Litio",
+                      "slug": "litio",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTE=",
+                      "name": "Plomo",
+                      "slug": "plomo",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjI4",
+              "name": "Tipo de fase",
+              "slug": "tipo-fase",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ3",
+                      "name": "Monofásico",
+                      "slug": "monofasico",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6MTQ4",
+                      "name": "Trifásico",
+                      "slug": "trifasico",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjc=",
+              "name": "Tipo de inversor",
+              "slug": "tipo-inversor",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTI=",
+                      "name": "Aislada",
+                      "slug": "aislada",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTM=",
+                      "name": "Conexión a red",
+                      "slug": "conexion-a-red",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTQ=",
+                      "name": "Híbrido",
+                      "slug": "hibrido",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NTU=",
+                      "name": "Microinversor",
+                      "slug": "microinversor",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjMx",
+              "name": "Title - Post",
+              "slug": "title-post",
+              "type": "PAGE_TYPE",
+              "inputType": "PLAIN_TEXT",
+              "entityType": null,
+              "valueRequired": true,
+              "visibleInStorefront": true,
+              "filterableInStorefront": false,
+              "filterableInDashboard": false,
+              "availableInGrid": false,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "QXR0cmlidXRlOjEx",
+              "name": "Voltaje (V)",
+              "slug": "voltaje-v",
+              "type": "PRODUCT_TYPE",
+              "inputType": "DROPDOWN",
+              "entityType": null,
+              "valueRequired": false,
+              "visibleInStorefront": true,
+              "filterableInStorefront": true,
+              "filterableInDashboard": true,
+              "availableInGrid": true,
+              "storefrontSearchPosition": 0,
+              "choices": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzM=",
+                      "name": "2",
+                      "slug": "2",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzQ=",
+                      "name": "12",
+                      "slug": "12",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzU=",
+                      "name": "12,8",
+                      "slug": "128",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6NzY=",
+                      "name": "12/24",
+                      "slug": "1224",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Nzc=",
+                      "name": "12/24/48",
+                      "slug": "122448",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Nzg=",
+                      "name": "18",
+                      "slug": "18",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6Nzk=",
+                      "name": "24",
+                      "slug": "24",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  },
+                  {
+                    "node": {
+                      "id": "QXR0cmlidXRlVmFsdWU6ODA=",
+                      "name": "48",
+                      "slug": "48",
+                      "value": "",
+                      "externalReference": null
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "extensions": {
+      "cost": {
+        "requestedQueryCost": 101,
+        "maximumAvailable": 50000
+      }
+    }
+  }

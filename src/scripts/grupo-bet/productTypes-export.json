@@ -1,0 +1,557 @@
+{
+    "data": {
+      "productTypes": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "WyJyZWd1bGFkb3ItZGUtY2FyZ2Etc29sYXIiXQ=="
+        },
+        "edges": [
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6Mw==",
+              "name": "Baterías",
+              "slug": "baterias",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjIz",
+                  "name": "Baterías Compatibles ",
+                  "slug": "baterias-compatibles"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE=",
+                  "name": "Capacidad (kWh)",
+                  "slug": "capacidad-kwh"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6NA==",
+              "name": "Cargador Coche Eléctrico",
+              "slug": "cargador-coche-electrico",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjE0",
+                  "name": "Garantía",
+                  "slug": "garantia"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6MQ==",
+              "name": "Default Type",
+              "slug": "default-type",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjI1",
+                  "name": "Alto",
+                  "slug": "alto"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjI2",
+                  "name": "Ancho",
+                  "slug": "ancho"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIz",
+                  "name": "Baterías Compatibles ",
+                  "slug": "baterias-compatibles"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE5",
+                  "name": "Capacidad (Ah)",
+                  "slug": "capacidad-ah"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE=",
+                  "name": "Capacidad (kWh)",
+                  "slug": "capacidad-kwh"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE2",
+                  "name": "Coeficiente Pmax (%/ºC)",
+                  "slug": "coeficiente-temperatura-pmax"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIw",
+                  "name": "Color",
+                  "slug": "color"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIy",
+                  "name": "Diámetro del cable (mm)",
+                  "slug": "diametro-cable-mm"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE4",
+                  "name": "Dimensiones",
+                  "slug": "dimensiones"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjk=",
+                  "name": "Disposición",
+                  "slug": "disposicion"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEz",
+                  "name": "Eficiencia módulo (%)",
+                  "slug": "eficiencia-modulo-porcentaje"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE0",
+                  "name": "Garantía",
+                  "slug": "garantia"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjI=",
+                  "name": "Intensidad carga/descarga (A)",
+                  "slug": "intensidad-cargadescarga-a"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjI0",
+                  "name": "Largo",
+                  "slug": "largo"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIx",
+                  "name": "Longitud del cable (m)",
+                  "slug": "longitud-cable-m"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE3",
+                  "name": "Medida del módulo",
+                  "slug": "medida-modulo"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjU=",
+                  "name": "Número de módulo",
+                  "slug": "numero-de-modulo"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE1",
+                  "name": "Peso",
+                  "slug": "peso"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEw",
+                  "name": "Potencia Aparente (VA)",
+                  "slug": "potencia-aparente-va"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjM=",
+                  "name": "Potencia Nominal (kW)",
+                  "slug": "potencia-nominal-kW"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQ=",
+                  "name": "Potencia (W)",
+                  "slug": "potencia-w"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEy",
+                  "name": "Tecnología módulo",
+                  "slug": "tecnologia-modulo"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjg=",
+                  "name": "Tecnología módulo FV",
+                  "slug": "tecnologia-modulo-fv"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjY=",
+                  "name": "Tipo batería",
+                  "slug": "tipo-bateria"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjc=",
+                  "name": "Tipo de inversor",
+                  "slug": "tipo-inversor"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEx",
+                  "name": "Voltaje (V)",
+                  "slug": "voltaje-v"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjI4",
+                  "name": "Tipo de fase",
+                  "slug": "tipo-fase"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6NQ==",
+              "name": "Estructura paneles solares",
+              "slug": "estructura-paneles-solares",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjU=",
+                  "name": "Número de módulo",
+                  "slug": "numero-de-modulo"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjk=",
+                  "name": "Disposición",
+                  "slug": "disposicion"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6Ng==",
+              "name": "Inversores",
+              "slug": "invesores",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjc=",
+                  "name": "Tipo de inversor",
+                  "slug": "tipo-inversor"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEx",
+                  "name": "Voltaje (V)",
+                  "slug": "voltaje-v"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE0",
+                  "name": "Garantía",
+                  "slug": "garantia"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEw",
+                  "name": "Potencia Aparente (VA)",
+                  "slug": "potencia-aparente-va"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6Nw==",
+              "name": "Material eléctrico",
+              "slug": "material-electrico",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjIy",
+                  "name": "Diámetro del cable (mm)",
+                  "slug": "diametro-cable-mm"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIx",
+                  "name": "Longitud del cable (m)",
+                  "slug": "longitud-cable-m"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjIw",
+                  "name": "Color",
+                  "slug": "color"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6OA==",
+              "name": "Monitorización",
+              "slug": "monitorizacion",
+              "kind": "NORMAL",
+              "hasVariants": false,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": []
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6OQ==",
+              "name": "Paneles solares",
+              "slug": "paneles-solares",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjg=",
+                  "name": "Tecnología módulo FV",
+                  "slug": "tecnologia-modulo-fv"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE0",
+                  "name": "Garantía",
+                  "slug": "garantia"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQ=",
+                  "name": "Potencia (W)",
+                  "slug": "potencia-w"
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "id": "UHJvZHVjdFR5cGU6MTA=",
+              "name": "Regulador de carga solar",
+              "slug": "regulador-de-carga-solar",
+              "kind": "NORMAL",
+              "hasVariants": true,
+              "isShippingRequired": true,
+              "isDigital": false,
+              "weight": {
+                "value": 0,
+                "unit": "KG"
+              },
+              "taxClass": null,
+              "productAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjM5",
+                  "name": "Product - Fabricante",
+                  "slug": "product-fabricante"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQw",
+                  "name": "SKU",
+                  "slug": "sku"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjQx",
+                  "name": "Stock total",
+                  "slug": "stock-total"
+                }
+              ],
+              "variantAttributes": [
+                {
+                  "id": "QXR0cmlidXRlOjI=",
+                  "name": "Intensidad carga/descarga (A)",
+                  "slug": "intensidad-cargadescarga-a"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjEx",
+                  "name": "Voltaje (V)",
+                  "slug": "voltaje-v"
+                },
+                {
+                  "id": "QXR0cmlidXRlOjE0",
+                  "name": "Garantía",
+                  "slug": "garantia"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "extensions": {
+      "cost": {
+        "requestedQueryCost": 2,
+        "maximumAvailable": 50000
+      }
+    }
+  }

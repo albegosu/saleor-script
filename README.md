@@ -99,6 +99,107 @@ Page Types → Pages
 
 The script warns you if you run a section whose dependency was skipped (e.g. running `collections` without `channels`).
 
+## Propagating data from an existing Saleor instance
+
+In addition to seeding from static config, this repo includes three standalone scripts that can **replay** data exported from another Saleor via GraphQL queries.
+
+All three scripts:
+- Use the same auth and `SALEOR_API_URL` settings as `npm run seed`
+- Expect a **JSON file** containing the raw GraphQL response (`data.*.edges[...]`)
+- Can be run independently with `npx tsx ...`
+
+### 1. Categories + subcategories
+
+Script:
+
+```bash
+npx tsx src/scripts/propagate-categories-from-export.ts path/to/categories-export.json
+```
+
+Expected JSON shape (top-level):
+
+```jsonc
+{
+  "data": {
+    "categories": {
+      "edges": [
+        { "node": { /* Category fields incl. children.edges */ } }
+      ]
+    }
+  }
+}
+```
+
+This script:
+- Maps each root category and its `children.edges[*].node` to `CategoryConfig`
+- Preserves `description` (rich text JSON), `seoTitle`/`seoDescription`, and `backgroundImage.url`
+- Reuses the existing `seedCategories` logic to create the full tree.
+
+### 2. Product types + product/variant attributes
+
+Script:
+
+```bash
+npx tsx src/scripts/propagate-productTypes-from-export.ts path/to/productTypes-export.json
+```
+
+Expected JSON shape:
+
+```jsonc
+{
+  "data": {
+    "productTypes": {
+      "edges": [
+        { "node": { /* ProductType fields */ } }
+      ]
+    }
+  }
+}
+```
+
+Each `node` should include at least:
+- `name`, `slug`, `kind`, `hasVariants`, `isShippingRequired`, `isDigital`
+- Optional: `weight { value unit }`, `taxClass { id name }`
+- `productAttributes[]` and `variantAttributes[]` with `slug`
+
+The script builds `ProductTypeConfig` and fills:
+- `productAttributeSlugs` from `productAttributes[*].slug`
+- `variantAttributeSlugs` from `variantAttributes[*].slug`
+
+Then it calls `seedProductTypes`, which creates the types and assigns attributes using the internal `SeedContext`.
+
+### 3. Attributes (definition + values)
+
+Script:
+
+```bash
+npx tsx src/scripts/propagate-attributes-from-export.ts path/to/attributes-export.json
+```
+
+Expected JSON shape:
+
+```jsonc
+{
+  "data": {
+    "attributes": {
+      "edges": [
+        { "node": { /* Attribute fields + choices */ } }
+      ]
+    }
+  }
+}
+```
+
+Each attribute `node` should include:
+- `name`, `slug`, `type`, `inputType`, `entityType`
+- Flags: `valueRequired`, `visibleInStorefront`, `filterableInStorefront`, `filterableInDashboard`, `availableInGrid`, `storefrontSearchPosition`
+- `choices.edges[*].node` with `name`, `value` (optional), `externalReference` (optional)
+
+The script maps this into `AttributeCreateInput`:
+- Copies all core fields and flags
+- Converts `choices` into `values[]` (skipping empty lists)
+- Calls `seedAttributes` to create them and populate `ctx.attributeIds` as usual.
+
 ## Project structure
 
 ```
