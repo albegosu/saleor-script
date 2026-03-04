@@ -106,41 +106,46 @@ In addition to seeding from static config, this repo includes three standalone s
 All three scripts:
 - Use the same auth and `SALEOR_API_URL` settings as `npm run seed`
 - Expect a **JSON file** containing the raw GraphQL response (`data.*.edges[...]`)
-- Can be run independently with `npx tsx ...`
+- Can be run with `npx tsx ...` but **must be run in this order**: Attributes → Product Types → Categories (later scripts depend on IDs created by earlier ones)
 
-### 1. Categories + subcategories
+### 1. Attributes (definition + values)
 
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-categories-from-export.ts path/to/categories-export.json
+npx tsx src/scripts/propagate-attributes-from-export.ts src/scripts/grupo-bet/attributes-export.json
 ```
 
-Expected JSON shape (top-level):
+Expected JSON shape:
 
 ```jsonc
 {
   "data": {
-    "categories": {
+    "attributes": {
       "edges": [
-        { "node": { /* Category fields incl. children.edges */ } }
+        { "node": { /* Attribute fields + choices */ } }
       ]
     }
   }
 }
 ```
 
-This script:
-- Maps each root category and its `children.edges[*].node` to `CategoryConfig`
-- Preserves `description` (rich text JSON), `seoTitle`/`seoDescription`, and `backgroundImage.url`
-- Reuses the existing `seedCategories` logic to create the full tree.
+Each attribute `node` should include:
+- `name`, `slug`, `type`, `inputType`, `entityType`
+- Flags: `valueRequired`, `visibleInStorefront`, `filterableInStorefront`, `filterableInDashboard`, `availableInGrid`, `storefrontSearchPosition`
+- `choices.edges[*].node` with `name`, `value` (optional), `externalReference` (optional)
+
+The script maps this into `AttributeCreateInput`:
+- Copies all core fields and flags
+- Converts `choices` into `values[]` (skipping empty lists)
+- Calls `seedAttributes` to create them and populate `ctx.attributeIds` as usual.
 
 ### 2. Product types + product/variant attributes
 
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-productTypes-from-export.ts path/to/productTypes-export.json
+npx tsx src/scripts/propagate-productTypes-from-export.ts src/scripts/grupo-bet/productTypes-export.json
 ```
 
 Expected JSON shape:
@@ -168,37 +173,32 @@ The script builds `ProductTypeConfig` and fills:
 
 Then it calls `seedProductTypes`, which creates the types and assigns attributes using the internal `SeedContext`.
 
-### 3. Attributes (definition + values)
+### 3. Categories + subcategories
 
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-attributes-from-export.ts path/to/attributes-export.json
+npx tsx src/scripts/propagate-categories-from-export.ts src/scripts/grupo-bet/categories-subcategories-export.json
 ```
 
-Expected JSON shape:
+Expected JSON shape (top-level):
 
 ```jsonc
 {
   "data": {
-    "attributes": {
+    "categories": {
       "edges": [
-        { "node": { /* Attribute fields + choices */ } }
+        { "node": { /* Category fields incl. children.edges */ } }
       ]
     }
   }
 }
 ```
 
-Each attribute `node` should include:
-- `name`, `slug`, `type`, `inputType`, `entityType`
-- Flags: `valueRequired`, `visibleInStorefront`, `filterableInStorefront`, `filterableInDashboard`, `availableInGrid`, `storefrontSearchPosition`
-- `choices.edges[*].node` with `name`, `value` (optional), `externalReference` (optional)
-
-The script maps this into `AttributeCreateInput`:
-- Copies all core fields and flags
-- Converts `choices` into `values[]` (skipping empty lists)
-- Calls `seedAttributes` to create them and populate `ctx.attributeIds` as usual.
+This script:
+- Maps each root category and its `children.edges[*].node` to `CategoryConfig`
+- Preserves `description` (rich text JSON), `seoTitle`/`seoDescription`, and `backgroundImage.url`
+- Reuses the existing `seedCategories` logic to create the full tree.
 
 ## Project structure
 
