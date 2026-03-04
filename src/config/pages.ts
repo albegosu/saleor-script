@@ -6,7 +6,8 @@ export interface PageConfig extends Omit<PageCreateInput, 'pageType'> {
   pageTypeSlug: string;
 }
 
-export const pages: SeederSection<PageConfig> = {
+/** Base pages (standard, legal, etc.). Companies and manufacturers are merged in config/index.ts */
+export const pagesBase: SeederSection<PageConfig> = {
   enabled: true,
   data: [
     {

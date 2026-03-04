@@ -17,7 +17,7 @@ export const productTypes: SeederSection<ProductTypeConfig> = {
       hasVariants: true,
       isShippingRequired: true,
       isDigital: false,
-      productAttributeSlugs: ['color', 'brand', 'material'],
+      productAttributeSlugs: ['color', 'brand', 'material', 'sku', 'stock-total', 'product-fabricante'],
       variantAttributeSlugs: ['size'],
     },
     {
@@ -26,7 +26,7 @@ export const productTypes: SeederSection<ProductTypeConfig> = {
       hasVariants: true,
       isShippingRequired: true,
       isDigital: false,
-      productAttributeSlugs: ['color', 'brand'],
+      productAttributeSlugs: ['color', 'brand', 'sku', 'stock-total', 'product-fabricante'],
       variantAttributeSlugs: [],
     },
     {
@@ -35,7 +35,7 @@ export const productTypes: SeederSection<ProductTypeConfig> = {
       hasVariants: false,
       isShippingRequired: false,
       isDigital: true,
-      productAttributeSlugs: ['brand'],
+      productAttributeSlugs: ['brand', 'sku', 'stock-total', 'product-fabricante'],
       variantAttributeSlugs: [],
     },
   ],

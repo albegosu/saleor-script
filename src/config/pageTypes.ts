@@ -21,6 +21,18 @@ export const pageTypes: SeederSection<PageTypeConfig> = {
       ],
     },
     {
+      name: 'Empresa',
+      slug: 'empresa',
+      attributeSlugs: [
+        'codigo-empresa',
+        'cifnif',
+        'activo',
+        'logo',
+        'usuario-admin',
+        'almacen-asociado'
+      ],
+    },
+    {
       name: 'Post',
       slug: 'post',
       attributeSlugs: ['title-post', 'content-post', 'imagen-post'],
