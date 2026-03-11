@@ -17,11 +17,26 @@ export const PAGE_CREATE = gql`
   }
 `;
 
-export interface PageCreateInput {
-  title: string;
+export const PAGE_UPDATE = gql`
+  mutation PageUpdate($id: ID!, $input: PageInput!) {
+    pageUpdate(id: $id, input: $input) {
+      page {
+        id
+        title
+        slug
+      }
+      errors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
+export interface PageInput {
+  title?: string;
   slug?: string;
-  /** Page type ID (required) */
-  pageType: string;
   content?: unknown;
   isPublished?: boolean;
   publishedAt?: string;
@@ -29,8 +44,20 @@ export interface PageCreateInput {
   attributes?: { id: string; values?: string[]; richText?: string; boolean?: boolean }[];
 }
 
+export interface PageCreateInput extends PageInput {
+  /** Page type ID (required on create) */
+  pageType: string;
+}
+
 export interface PageCreateResult {
   pageCreate: {
+    page: { id: string; title: string; slug: string } | null;
+    errors: { field: string | null; message: string; code: string }[];
+  };
+}
+
+export interface PageUpdateResult {
+  pageUpdate: {
     page: { id: string; title: string; slug: string } | null;
     errors: { field: string | null; message: string; code: string }[];
   };

@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { initAuth } from '../apollo/apollo-client.js';
-import { createEmptyContext, type SeedContext } from '../seeders/utils.js';
-import { seedCategories } from '../seeders/categories.js';
-import type { SeederSection, CategoryConfig } from '../config/index.js';
+import { initAuth } from '../../apollo/apollo-client.js';
+import { createEmptyContext, type SeedContext } from '../../seeders/utils.js';
+import { seedCategories } from '../../seeders/categories.js';
+import type { SeederSection, CategoryConfig } from '../../config/index.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -75,7 +75,7 @@ async function main(): Promise<void> {
 
   if (!filePath) {
     console.error(
-      'Usage: tsx src/scripts/propagate-categories-from-export.ts <categories-export.json>',
+      'Usage: tsx src/scripts/seeds/seed-categories.ts <categories-export.json>',
     );
     process.exit(1);
   }

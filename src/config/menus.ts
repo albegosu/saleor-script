@@ -75,7 +75,18 @@ export const menus: SeederSection<MenuConfig> = {
     {
       name: 'Blog',
       slug: 'blog',
-      items: [],
+      items: [
+        { name: 'Post de blog 1', pageSlug: 'post-blog-1' },
+        { name: 'Post de blog 2', pageSlug: 'post-blog-2' },
+        { name: 'Post de blog 3', pageSlug: 'post-blog-3' },
+        { name: 'Post de blog 4', pageSlug: 'post-blog-4' },
+        { name: 'Post de blog 5', pageSlug: 'post-blog-5' },
+        { name: 'Post de blog 6', pageSlug: 'post-blog-6' },
+        { name: 'Post de blog 7', pageSlug: 'post-blog-7' },
+        { name: 'Post de blog 8', pageSlug: 'post-blog-8' },
+        { name: 'Post de blog 9', pageSlug: 'post-blog-9' },
+        { name: 'Post de blog 10', pageSlug: 'post-blog-10' },
+      ],
     },
   ],
 };

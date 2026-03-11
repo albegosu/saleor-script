@@ -1,9 +1,9 @@
 import 'dotenv/config';
-import { initAuth } from '../apollo/apollo-client.js';
-import { createEmptyContext, type SeedContext } from '../seeders/utils.js';
-import { seedProductTypes } from '../seeders/productTypes.js';
-import { fetchAttributeIdsBySlug } from '../queries/attributes.js';
-import type { SeederSection, ProductTypeConfig } from '../config/index.js';
+import { initAuth } from '../../apollo/apollo-client.js';
+import { createEmptyContext, type SeedContext } from '../../seeders/utils.js';
+import { seedProductTypes } from '../../seeders/productTypes.js';
+import { fetchAttributeIdsBySlug } from '../../queries/attributes.js';
+import type { SeederSection, ProductTypeConfig } from '../../config/index.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -79,7 +79,7 @@ async function main(): Promise<void> {
 
   if (!filePath) {
     console.error(
-      'Usage: tsx src/scripts/propagate-productTypes-from-export.ts <productTypes-export.json>',
+      'Usage: tsx src/scripts/seeds/seed-productTypes.ts <productTypes-export.json>',
     );
     process.exit(1);
   }

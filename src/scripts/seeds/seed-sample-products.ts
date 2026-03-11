@@ -1,14 +1,14 @@
 import 'dotenv/config';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { initAuth, getAuthHeaders } from '../apollo/apollo-client.js';
-import { slugify, executeMutation, logError } from '../seeders/utils.js';
-import { fetchAttributeIdsBySlug } from '../queries/attributes.js';
-import { fetchAttributeChoiceIdsBySlug } from '../queries/attributeChoices.js';
-import { fetchChannelIdsBySlug } from '../queries/channels.js';
-import { fetchWarehouseIdsBySlug } from '../queries/warehouses.js';
-import { fetchCategoryIdsBySlug } from '../queries/categories.js';
-import { fetchProductTypeIdsBySlug } from '../queries/productTypes.js';
+import { initAuth, getAuthHeaders } from '../../apollo/apollo-client.js';
+import { slugify, executeMutation, logError } from '../../seeders/utils.js';
+import { fetchAttributeIdsBySlug } from '../../queries/attributes.js';
+import { fetchAttributeChoiceIdsBySlug } from '../../queries/attributeChoices.js';
+import { fetchChannelIdsBySlug } from '../../queries/channels.js';
+import { fetchWarehouseIdsBySlug } from '../../queries/warehouses.js';
+import { fetchCategoryIdsBySlug } from '../../queries/categories.js';
+import { fetchProductTypeIdsBySlug } from '../../queries/productTypes.js';
 import {
   PRODUCT_CREATE,
   PRODUCT_CHANNEL_LISTING_UPDATE,
@@ -23,8 +23,8 @@ import {
   type ProductVariantCreateResult,
   type ProductVariantChannelListingAddInput,
   type ProductVariantChannelListingUpdateResult,
-} from '../mutations/product.js';
-import { apollo } from '../apollo/apollo-client.js';
+} from '../../mutations/product.js';
+import { apollo } from '../../apollo/apollo-client.js';
 import fetch from 'cross-fetch';
 import FormData from 'form-data';
 

@@ -2,22 +2,74 @@ import type { PageConfig } from './pages.js';
 
 /**
  * Manufacturer pages to seed.
- * Each item becomes a Saleor page of type "Fabricantes".
- *
- * You can freely add/remove items from this array.
+ * Auto-generated from files in public/manufacturers by
+ * src/scripts/propagate-manufacturers-from-images.ts
  */
 export const manufacturerPages: PageConfig[] = [
   {
-    title: 'Fabricante Demo 1',
-    slug: 'fabricante-demo-1',
+    title: 'Aeg',
+    slug: 'aeg',
     pageTypeSlug: 'fabricantes',
     isPublished: true,
   },
   {
-    title: 'Fabricante Demo 2',
-    slug: 'fabricante-demo-2',
+    title: 'Cegasa',
+    slug: 'cegasa',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Gtlan',
+    slug: 'gtlan',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'K2system',
+    slug: 'k2system',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Kostal',
+    slug: 'kostal',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Lg',
+    slug: 'lg',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Peimar',
+    slug: 'peimar',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Pylontech',
+    slug: 'pylontech',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Raedian',
+    slug: 'raedian',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Schneiderelectric',
+    slug: 'schneiderelectric',
+    pageTypeSlug: 'fabricantes',
+    isPublished: true,
+  },
+  {
+    title: 'Xcharge',
+    slug: 'xcharge',
     pageTypeSlug: 'fabricantes',
     isPublished: true,
   },
 ];
-

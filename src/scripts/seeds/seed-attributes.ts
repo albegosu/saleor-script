@@ -1,12 +1,12 @@
 import 'dotenv/config';
-import { initAuth } from '../apollo/apollo-client.js';
-import { createEmptyContext, type SeedContext } from '../seeders/utils.js';
-import { seedAttributes } from '../seeders/attributes.js';
-import type { SeederSection } from '../config/index.js';
+import { initAuth } from '../../apollo/apollo-client.js';
+import { createEmptyContext, type SeedContext } from '../../seeders/utils.js';
+import { seedAttributes } from '../../seeders/attributes.js';
+import type { SeederSection } from '../../config/index.js';
 import type {
   AttributeCreateInput,
   AttributeValueCreateInput,
-} from '../mutations/attribute.js';
+} from '../../mutations/attribute.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -117,7 +117,7 @@ async function main(): Promise<void> {
 
   if (!filePath) {
     console.error(
-      'Usage: tsx src/scripts/propagate-attributes-from-export.ts <attributes-export.json>',
+      'Usage: tsx src/scripts/seeds/seed-attributes-from-export.ts <attributes-export.json>',
     );
     process.exit(1);
   }

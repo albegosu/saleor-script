@@ -25,7 +25,11 @@ export const config: SeedConfig = {
   pageTypes,
   pages: {
     ...pagesBase,
-    data: [...pagesBase.data, ...manufacturerPages, ...companyPages],
+    data: [
+      ...pagesBase.data,
+      ...manufacturerPages,
+      ...companyPages,
+    ],
   },
   menus,
 };

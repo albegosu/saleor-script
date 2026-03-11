@@ -18,6 +18,25 @@ export const ATTRIBUTE_CREATE = gql`
   }
 `;
 
+export const ATTRIBUTE_UPDATE = gql`
+  mutation AttributeUpdate($id: ID!, $input: AttributeUpdateInput!) {
+    attributeUpdate(id: $id, input: $input) {
+      attribute {
+        id
+        name
+        slug
+        inputType
+        valueRequired
+      }
+      errors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
 export type AttributeInputType =
   | 'DROPDOWN'
   | 'MULTISELECT'
@@ -62,6 +81,13 @@ export interface AttributeCreateInput {
 export interface AttributeCreateResult {
   attributeCreate: {
     attribute: { id: string; name: string; slug: string; inputType: string } | null;
+    errors: { field: string | null; message: string; code: string }[];
+  };
+}
+
+export interface AttributeUpdateResult {
+  attributeUpdate: {
+    attribute: { id: string; name: string; slug: string; inputType: string; valueRequired: boolean } | null;
     errors: { field: string | null; message: string; code: string }[];
   };
 }

@@ -1,8 +1,6 @@
 # saleor-script
 
-Script to apply basic structures in a new Saleor instance.
-
-Connects to any Saleor GraphQL API and seeds default structures via mutations: tax classes, warehouses, channels, shipping zones, attributes, product types, categories, collections, page types, and pages.
+Small Node.js tool that connects to a Saleor GraphQL API and initializes a new instance with default catalog, pages (including manufacturers and blog), and navigation structures.
 
 ## Requirements
 
@@ -41,8 +39,18 @@ cp .env.example .env
 
 ## Running
 
+Quick reference:
+
+- **`npm run seed`**: Seeds all enabled core sections (`taxClasses`, `warehouses`, `channels`, `shipping`, `attributes`, `productTypes`, `categories`, `collections`, `pageTypes`, `pages`, `menus`, plus manufacturer/company pages).
+- **`npm run seed:attributes -- <attributes-export.json>`**: Replays attributes (definitions + values) from a Saleor export JSON.
+- **`npm run seed:productTypes -- <productTypes-export.json>`**: Replays product types and their product/variant attributes from an export JSON.
+- **`npm run seed:categories -- <categories-export.json>`**: Replays categories + subcategories (tree) from an export JSON.
+- **`npm run seed:sample-products -- --count=2`**: Creates demo products using the propagated attributes/product types/categories and local product images.
+- **`npm run seed:manufacturers`**: Generates manufacturer pages + attributes from logo files under `public/manufacturers`.
+- **`npm run seed:blog-posts`**: Seeds demo blog posts and relaxes blog image requirements if needed.
+
 ```bash
-# Run all enabled seeders (as configured in src/config/defaults.ts)
+# Run all enabled seeders (as configured in src/config/*.ts via src/config/index.ts)
 npm run seed
 
 # Run only specific sections (ignores enabled flags in config)
@@ -61,28 +69,42 @@ npm run seed -- --only=channels,collections --skip=collections
 
 ## Customising defaults
 
-All seed data lives in a single file: **`src/config/defaults.ts`**.
+Seed data lives under **`src/config/`**, with one file per section:
 
-Each section has an `enabled` flag and a `data` array:
+- `taxClasses.ts`
+- `warehouses.ts`
+- `channels.ts`
+- `shipping.ts`
+- `attributes.ts`
+- `productTypes.ts`
+- `categories.ts`
+- `collections.ts`
+- `pageTypes.ts`
+- `pages.ts` (base pages)
+- `companies.ts` / `manufacturers.ts` (extra pages)
+- `menus.ts`
+
+Each file exports a `SeederSection<...>` with an `enabled` flag and a `data` array, and `src/config/index.ts` combines them into the final `config` used by the seeders. For example, `src/config/categories.ts`:
 
 ```ts
-export const config = {
-  taxClasses: {
-    enabled: true,           // set false to permanently skip this section
-    data: [
-      { name: 'Standard Rate' },
-      { name: 'Reduced Rate' },
-    ],
-  },
-  shipping: {
-    enabled: false,          // disabled — won't run unless --only=shipping is passed
-    data: [],
-  },
-  // ...
+export const categories: SeederSection<CategoryConfig> = {
+  enabled: false,
+  data: [
+    {
+      name: 'Clothing',
+      slug: 'clothing',
+      children: [
+        { name: 'Men', slug: 'men' },
+        { name: 'Women', slug: 'women' },
+        { name: 'Kids', slug: 'kids' },
+      ],
+    },
+    // ...
+  ],
 };
 ```
 
-Edit only `defaults.ts` — no other files need changing.
+To customise defaults, edit the corresponding `src/config/*.ts` file; toggling `enabled` or changing `data` is all that is needed.
 
 ## Seeding order and dependencies
 
@@ -99,6 +121,43 @@ Page Types → Pages
 
 The script warns you if you run a section whose dependency was skipped (e.g. running `collections` without `channels`).
 
+## Project-specific seeding flow
+
+For this repository, the typical flow to fully prepare a new Saleor instance (catalog, products, manufacturers, blog) is:
+
+0. (Optional, only when cloning an existing catalog and creating demo products) Seed catalog structures and sample products from exports, in this exact order (see detailed section above):
+
+   ```bash
+   # 1) Attributes → 2) Product types → 3) Categories → 4) Sample products
+   npx tsx src/scripts/seeds/seed-attributes.ts <attributes-export.json>
+   npx tsx src/scripts/seeds/seed-productTypes.ts <productTypes-export.json>
+   npx tsx src/scripts/seeds/seed-categories.ts <categories-export.json>
+   npx tsx src/scripts/seeds/seed-sample-products.ts --count=2
+   ```
+
+1. Seed manufacturer pages and attributes from logo images (only when logos change):
+
+   - Place logo files under `public/manufacturers` (for example `aeg-logo.png`).
+   - Generate/refresh `src/config/manufacturers.ts` and sync manufacturer pages + attributes:
+
+   ```bash
+   npx tsx src/scripts/seeds/seed-manufacturers.ts
+   ```
+
+2. Run the base seed (core configuration, page types, pages, menus):
+
+   ```bash
+   npm run seed
+   ```
+
+3. Seed demo blog posts (the script will relax the blog image attribute if still required):
+
+   ```bash
+   npx tsx src/scripts/seeds/seed-blog-posts.ts
+   ```
+
+You can re-run step 1 whenever you add or remove manufacturer logos; the base seed remains idempotent.
+
 ## Propagating data from an existing Saleor instance
 
 In addition to seeding from static config, this repo includes several standalone scripts that can **replay** data exported from another Saleor via GraphQL queries and generate demo catalog data.
@@ -113,7 +172,7 @@ All three scripts:
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-attributes-from-export.ts src/scripts/grupo-bet/attributes-export.json
+npx tsx src/scripts/seeds/seed-attributes.ts src/scripts/grupo-bet/attributes-export.json
 ```
 
 Expected JSON shape:
@@ -145,7 +204,7 @@ The script maps this into `AttributeCreateInput`:
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-productTypes-from-export.ts src/scripts/grupo-bet/productTypes-export.json
+npx tsx src/scripts/seeds/seed-productTypes.ts src/scripts/grupo-bet/productTypes-export.json
 ```
 
 Expected JSON shape:
@@ -178,7 +237,7 @@ Then it calls `seedProductTypes`, which creates the types and assigns attributes
 Script:
 
 ```bash
-npx tsx src/scripts/propagate-categories-from-export.ts src/scripts/grupo-bet/categories-subcategories-export.json
+npx tsx src/scripts/seeds/seed-categories.ts src/scripts/grupo-bet/categories-subcategories-export.json
 ```
 
 Expected JSON shape (top-level):
@@ -207,7 +266,7 @@ Once you have propagated attributes, product types, and categories into the targ
 Script:
 
 ```bash
-npx tsx src/scripts/seed-sample-products.ts --count=2
+npx tsx src/scripts/seeds/seed-sample-products.ts --count=2
 ```
 
 - **`--count`**: optional, exact number of demo products to create. If omitted, the script creates **2** demo products, choosing random leaf categories whose slugs exist in the target instance.
@@ -236,11 +295,14 @@ src/
 │   ├── collection.ts
 │   ├── pageType.ts
 │   └── page.ts
-├── scripts/                  # one-off propagation + demo catalog scripts
-│   ├── propagate-attributes-from-export.ts
-│   ├── propagate-productTypes-from-export.ts
-│   ├── propagate-categories-from-export.ts
-│   └── seed-sample-products.ts
+├── scripts/                  # one-off seed scripts (exports, demo data, etc.)
+│   └── seeds/
+│       ├── seed-blog-posts.ts
+│       ├── seed-sample-products.ts
+│       ├── seed-attributes.ts
+│       ├── seed-productTypes.ts
+│       ├── seed-categories.ts
+│       └── seed-manufacturers.ts
 └── seeders/                  # one seeder per structure type
     ├── utils.ts              # shared logging + SeedContext
     ├── taxClasses.ts
