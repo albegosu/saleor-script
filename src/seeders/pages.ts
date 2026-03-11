@@ -8,7 +8,7 @@ export async function seedPages(
   section: SeederSection<PageConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Pages]');
+  console.log('\n[Páginas]');
 
   for (const pageConfig of section.data) {
     const { pageTypeSlug, ...input } = pageConfig;
@@ -16,7 +16,11 @@ export async function seedPages(
 
     const pageTypeId = ctx.pageTypeIds[pageTypeSlug];
     if (!pageTypeId) {
-      logSkip('Page', input.title, `page type slug "${pageTypeSlug}" not found in context`);
+      logSkip(
+        'Page',
+        input.title,
+        `el slug de tipo de página "${pageTypeSlug}" no existe en el contexto`,
+      );
       continue;
     }
 

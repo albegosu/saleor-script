@@ -101,7 +101,7 @@ The script warns you if you run a section whose dependency was skipped (e.g. run
 
 ## Propagating data from an existing Saleor instance
 
-In addition to seeding from static config, this repo includes three standalone scripts that can **replay** data exported from another Saleor via GraphQL queries.
+In addition to seeding from static config, this repo includes several standalone scripts that can **replay** data exported from another Saleor via GraphQL queries and generate demo catalog data.
 
 All three scripts:
 - Use the same auth and `SALEOR_API_URL` settings as `npm run seed`
@@ -200,6 +200,22 @@ This script:
 - Preserves `description` (rich text JSON), `seoTitle`/`seoDescription`, and `backgroundImage.url`
 - Reuses the existing `seedCategories` logic to create the full tree.
 
+### 4. Sample products (Grupo Bet demo)
+
+Once you have propagated attributes, product types, and categories into the target Saleor instance with the three scripts above (and run the base `npm run seed` so that tax classes, warehouses, channels, etc. exist), you can quickly populate the catalog with demo products.
+
+Script:
+
+```bash
+npx tsx src/scripts/seed-sample-products.ts --count=2
+```
+
+- **`--count`**: optional, target number of products. If omitted, the script creates **2** demo products (uno por categoría hoja, hasta 2). Si `--count` es mayor que 2, el script crea **al menos 50 productos**, distribuyéndolos entre todas las categorías hoja con slug conocido.
+- Usa la misma configuración de autenticación/entorno que `npm run seed` (lee `SALEOR_API_URL`, `SALEOR_APP_TOKEN` / `SALEOR_EMAIL` + `SALEOR_PASSWORD`).
+- Espera los JSON de exportación usados por los scripts de propagación en `src/scripts/grupo-bet/` (`attributes-export.json`, `productTypes-export.json`, `categories-subcategories-export.json`).
+- Supone que existe un canal con slug `canal-test` y al menos un almacén (intentará `default-warehouse`, luego `default`, y finalmente cualquier almacén disponible).
+- Sube imágenes de producto desde ficheros locales ubicados en `public/products/product-<n>.jpg` usando una petición multipart directamente contra la API GraphQL (requiere que esos ficheros existan).
+
 ## Project structure
 
 ```
@@ -220,6 +236,11 @@ src/
 │   ├── collection.ts
 │   ├── pageType.ts
 │   └── page.ts
+├── scripts/                  # one-off propagation + demo catalog scripts
+│   ├── propagate-attributes-from-export.ts
+│   ├── propagate-productTypes-from-export.ts
+│   ├── propagate-categories-from-export.ts
+│   └── seed-sample-products.ts
 └── seeders/                  # one seeder per structure type
     ├── utils.ts              # shared logging + SeedContext
     ├── taxClasses.ts

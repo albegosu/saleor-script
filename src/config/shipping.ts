@@ -6,14 +6,24 @@ export interface ShippingMethodConfig {
   type: 'PRICE' | 'WEIGHT';
   /** Per-channel pricing: channelSlug → price amount */
   channelPrices?: Record<string, number>;
+  /** Currency code (ISO 4217) used for prices and order value range */
+  currencyCode?: string;
+  /** Optional minimum order price (same currency as channel) */
+  minimumOrderPrice?: number;
+  /** Optional maximum order price (same currency as channel) */
+  maximumOrderPrice?: number;
 }
 
 export interface ShippingZoneConfig extends ShippingZoneCreateInput {
+  /** Optional list of channel slugs to assign this zone to */
+  channelSlugs?: string[];
+  /** Optional list of warehouse slugs to assign this zone to */
+  warehouseSlugs?: string[];
   methods?: ShippingMethodConfig[];
 }
 
 export const shipping: SeederSection<ShippingZoneConfig> = {
-  enabled: false,
+  enabled: true,
   data: [
     {
       name: 'Domestic',
@@ -40,6 +50,25 @@ export const shipping: SeederSection<ShippingZoneConfig> = {
           name: 'International Standard',
           type: 'PRICE',
           channelPrices: { 'web-store': 20 },
+        },
+      ],
+    },
+    {
+      name: 'Zona envío test',
+      countries: ['ES'],
+      default: false,
+      channelSlugs: ['canal-test'],
+      warehouseSlugs: ['default-warehouse'],
+      methods: [
+        {
+          name: 'Tarifa envío test',
+          type: 'PRICE',
+          currencyCode: 'EUR',
+          channelPrices: {
+            'canal-test': 15.99,
+          },
+          minimumOrderPrice: 0,
+          maximumOrderPrice: 10000,
         },
       ],
     },

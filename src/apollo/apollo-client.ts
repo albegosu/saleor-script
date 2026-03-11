@@ -8,8 +8,28 @@ export function setAuthToken(token: string): void {
   authToken = token;
 }
 
+export function getAuthHeaders(): Record<string, string> {
+  if (authToken) {
+    return { authorization: `Bearer ${authToken}` };
+  }
+  const appToken = process.env.SALEOR_APP_TOKEN;
+  if (appToken) {
+    return { authorization: `Bearer ${appToken}` };
+  }
+  return {};
+}
+
+const saleorApiUrl = process.env.SALEOR_API_URL;
+
+if (!saleorApiUrl) {
+  throw new Error(
+    'SALEOR_API_URL must be defined before creating the Apollo client. ' +
+      'Copy .env.example to .env y configura la URL del endpoint GraphQL.',
+  );
+}
+
 const httpLink = createHttpLink({
-  uri: process.env.SALEOR_API_URL,
+  uri: saleorApiUrl,
   fetch,
 });
 
@@ -53,7 +73,7 @@ export async function initAuth(): Promise<void> {
   const appToken = process.env.SALEOR_APP_TOKEN;
   if (appToken) {
     setAuthToken(appToken);
-    console.log('  Auth: using SALEOR_APP_TOKEN');
+    console.log('  Autenticación: usando SALEOR_APP_TOKEN');
     return;
   }
 
@@ -61,7 +81,7 @@ export async function initAuth(): Promise<void> {
   const password = process.env.SALEOR_PASSWORD;
   if (!email || !password) {
     throw new Error(
-      'No auth configured. Set SALEOR_APP_TOKEN or both SALEOR_EMAIL and SALEOR_PASSWORD in .env',
+      'Autenticación no configurada. Define SALEOR_APP_TOKEN o bien SALEOR_EMAIL y SALEOR_PASSWORD en .env.',
     );
   }
 
@@ -88,19 +108,23 @@ export async function initAuth(): Promise<void> {
 
   // GraphQL-level transport errors (e.g. invalid token, permission denied)
   if (result.errors && result.errors.length > 0) {
-    throw new Error(`Auth failed: ${result.errors.map((e) => e.message).join(', ')}`);
+    throw new Error(
+      `Autenticación fallida: ${result.errors.map((e) => e.message).join(', ')}`,
+    );
   }
 
   const token = result.data?.tokenCreate?.token;
   const errors = result.data?.tokenCreate?.errors ?? [];
 
   if (errors.length > 0) {
-    throw new Error(`tokenCreate failed: ${errors.map((e) => e.message).join(', ')}`);
+    throw new Error(
+      `La mutación tokenCreate ha fallado: ${errors.map((e) => e.message).join(', ')}`,
+    );
   }
   if (!token) {
-    throw new Error('tokenCreate returned no token');
+    throw new Error('La mutación tokenCreate no ha devuelto ningún token.');
   }
 
   setAuthToken(token);
-  console.log('  Auth: JWT obtained via tokenCreate');
+  console.log('  Autenticación: JWT obtenido mediante tokenCreate');
 }

@@ -123,18 +123,20 @@ async function main(): Promise<void> {
   }
 
   if (!process.env.SALEOR_API_URL) {
-    console.error('Error: SALEOR_API_URL is not set in environment (.env).');
+    console.error(
+      'Error: SALEOR_API_URL no está definida en el entorno (.env).',
+    );
     process.exit(1);
   }
 
   console.log('╔══════════════════════════════════════╗');
-  console.log('║  Propagate Attributes from Export    ║');
+  console.log('║  Propagar atributos desde un export  ║');
   console.log('╚══════════════════════════════════════╝');
 
-  console.log('\n[Auth]');
+  console.log('\n[Autenticación]');
   await initAuth();
 
-  console.log('\n[Load export]');
+  console.log('\n[Cargar export]');
   const exportData = await loadExport(filePath);
   const nodes = exportData.data.attributes.edges.map(({ node }) => node);
 
@@ -145,15 +147,15 @@ async function main(): Promise<void> {
 
   const ctx: SeedContext = createEmptyContext();
 
-  console.log('\n[Seed Attributes]');
+  console.log('\n[Seed de atributos]');
   await seedAttributes(section, ctx);
 
-  console.log('\n✔ Attribute propagation complete.\n');
+  console.log('\n✔ Propagación de atributos completada.\n');
 }
 
 main().catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
-  console.error(`\nFatal: ${message}`);
+  console.error(`\nError fatal: ${message}`);
   process.exit(1);
 });
 

@@ -81,18 +81,20 @@ async function main(): Promise<void> {
   }
 
   if (!process.env.SALEOR_API_URL) {
-    console.error('Error: SALEOR_API_URL is not set in environment (.env).');
+    console.error(
+      'Error: SALEOR_API_URL no está definida en el entorno (.env).',
+    );
     process.exit(1);
   }
 
   console.log('╔══════════════════════════════════════╗');
-  console.log('║  Propagate Categories from Export   ║');
+  console.log('║  Propagar categorías desde un export║');
   console.log('╚══════════════════════════════════════╝');
 
-  console.log('\n[Auth]');
+  console.log('\n[Autenticación]');
   await initAuth();
 
-  console.log('\n[Load export]');
+  console.log('\n[Cargar export]');
   const exportData = await loadExport(filePath);
   const roots = exportData.data.categories.edges.map(({ node }) => node);
 
@@ -103,15 +105,15 @@ async function main(): Promise<void> {
 
   const ctx: SeedContext = createEmptyContext();
 
-  console.log('\n[Seed Categories]');
+  console.log('\n[Seed de categorías]');
   await seedCategories(section, ctx);
 
-  console.log('\n✔ Category propagation complete.\n');
+  console.log('\n✔ Propagación de categorías completada.\n');
 }
 
 main().catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
-  console.error(`\nFatal: ${message}`);
+  console.error(`\nError fatal: ${message}`);
   process.exit(1);
 });
 

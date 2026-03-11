@@ -8,7 +8,7 @@ export async function seedChannels(
   section: SeederSection<ChannelCreateInput>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Channels]');
+  console.log('\n[Canales]');
 
   for (const input of section.data) {
     const warehouseIds = Object.values(ctx.warehouseIds);

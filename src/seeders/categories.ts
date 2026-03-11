@@ -37,7 +37,7 @@ async function createCategory(
 
   ctx.categoryIds[category.slug] = category.id;
   const indent = parentId ? '    ↳' : '  ✔';
-  console.log(`${indent} Category: "${category.name}" (${category.id})`);
+  console.log(`${indent} Categoría: "${category.name}" (${category.id})`);
   return category.id;
 }
 
@@ -59,6 +59,6 @@ export async function seedCategories(
   section: SeederSection<CategoryConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Categories]');
+  console.log('\n[Categorías]');
   await seedCategoryTree(section.data, ctx);
 }

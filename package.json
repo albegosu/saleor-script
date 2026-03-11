@@ -11,11 +11,12 @@
     "@apollo/client": "^3.13.4",
     "cross-fetch": "^4.0.0",
     "dotenv": "^16.4.7",
+    "form-data": "^4.0.5",
     "graphql": "^16.10.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
-    "tsx": "^4.19.3",
+    "tsx": "^4.21.0",
     "typescript": "^5.8.2"
   }
 }

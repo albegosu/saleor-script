@@ -19,7 +19,11 @@ function resolveItemLinks(
   if (item.categorySlug) {
     const id = ctx.categoryIds[item.categorySlug];
     if (!id) {
-      logSkip('MenuItem', itemLabel, `category slug "${item.categorySlug}" not in context`);
+      logSkip(
+        'MenuItem',
+        itemLabel,
+        `el slug de categoría "${item.categorySlug}" no existe en el contexto`,
+      );
     } else {
       links.category = id;
     }
@@ -28,7 +32,11 @@ function resolveItemLinks(
   if (item.collectionSlug) {
     const id = ctx.collectionIds[item.collectionSlug];
     if (!id) {
-      logSkip('MenuItem', itemLabel, `collection slug "${item.collectionSlug}" not in context`);
+      logSkip(
+        'MenuItem',
+        itemLabel,
+        `el slug de colección "${item.collectionSlug}" no existe en el contexto`,
+      );
     } else {
       links.collection = id;
     }
@@ -37,7 +45,11 @@ function resolveItemLinks(
   if (item.pageSlug) {
     const id = ctx.pageIds[item.pageSlug];
     if (!id) {
-      logSkip('MenuItem', itemLabel, `page slug "${item.pageSlug}" not in context`);
+      logSkip(
+        'MenuItem',
+        itemLabel,
+        `el slug de página "${item.pageSlug}" no existe en el contexto`,
+      );
     } else {
       links.page = id;
     }
@@ -94,11 +106,11 @@ async function createMenuItems(
     if (!menuItem) continue;
 
     const linkSuffix = links.category
-      ? ' → category'
+      ? ' → categoría'
       : links.collection
-        ? ' → collection'
+        ? ' → colección'
         : links.page
-          ? ' → page'
+          ? ' → página'
           : links.url
             ? ` → ${links.url}`
             : '';
@@ -115,7 +127,7 @@ export async function seedMenus(
   section: SeederSection<MenuConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Menus]');
+  console.log('\n[Menús]');
 
   for (const menuConfig of section.data) {
     const { items, ...input } = menuConfig;

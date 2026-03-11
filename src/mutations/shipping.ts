@@ -76,9 +76,12 @@ export interface ShippingPriceInput {
 export interface ShippingMethodChannelListingInput {
   addChannels?: {
     channelId: string;
-    price: { amount: number; currency: string };
-    minimumOrderPrice?: { amount: number; currency: string };
-    maximumOrderPrice?: { amount: number; currency: string };
+    /** PositiveDecimal in Saleor schema; we send number */
+    price?: number;
+    /** PositiveDecimal in Saleor schema; we send number */
+    minimumOrderPrice?: number;
+    /** PositiveDecimal in Saleor schema; we send number */
+    maximumOrderPrice?: number;
   }[];
 }
 

@@ -18,7 +18,7 @@ interface TransportError {
 }
 
 // ---------------------------------------------------------------------------
-// Logging helpers
+// Logging helpers (user-facing messages are in Spanish)
 // ---------------------------------------------------------------------------
 
 export function logSuccess(type: string, name: string, id: string): void {
@@ -26,21 +26,21 @@ export function logSuccess(type: string, name: string, id: string): void {
 }
 
 export function logSkip(type: string, name: string, reason: string): void {
-  console.log(`  ⚠ ${type}: "${name}" skipped — ${reason}`);
+  console.log(`  ⚠ ${type}: "${name}" omitido — ${reason}`);
 }
 
 export function logError(type: string, name: string, errors: SaleorError[]): void {
   for (const e of errors) {
     const field = e.field ? ` [field: ${e.field}]` : '';
     const code = e.code ? ` (${e.code})` : '';
-    console.error(`  ✖ ${type}: "${name}" failed —${field} ${e.message}${code}`);
+    console.error(`  ✖ ${type}: "${name}" ha fallado —${field} ${e.message}${code}`);
   }
 }
 
 function logTransportErrors(type: string, name: string, errors: TransportError[]): void {
   for (const e of errors) {
     const code = e.extensions?.['code'] ? ` (${e.extensions['code']})` : '';
-    console.error(`  ✖ ${type}: "${name}" — GraphQL error: ${e.message}${code}`);
+    console.error(`  ✖ ${type}: "${name}" — error de GraphQL: ${e.message}${code}`);
   }
 }
 
@@ -48,7 +48,21 @@ function logNetworkError(type: string, name: string, err: ApolloError): void {
   if (err.networkError) {
     const status =
       'statusCode' in err.networkError ? ` [HTTP ${err.networkError.statusCode}]` : '';
-    console.error(`  ✖ ${type}: "${name}" — Network error${status}: ${err.networkError.message}`);
+    console.error(
+      `  ✖ ${type}: "${name}" — error de red${status}: ${err.networkError.message}`,
+    );
+    // Surface GraphQL payload when available (common for HTTP 400 with validation errors)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyNet = err.networkError as any;
+    if (anyNet?.result) {
+      try {
+        console.error(
+          `    Network error payload: ${JSON.stringify(anyNet.result, null, 2)}`,
+        );
+      } catch {
+        // ignore JSON stringify issues
+      }
+    }
   } else {
     console.error(`  ✖ ${type}: "${name}" — ${err.message}`);
   }

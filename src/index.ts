@@ -95,8 +95,8 @@ function warnMissingDependencies(sections: SectionKey[]): void {
     for (const dep of deps) {
       if (!activeSet.has(dep)) {
         console.warn(
-          `  ⚠ Warning: "${section}" depends on "${dep}", but "${dep}" is not enabled. ` +
-            `IDs may be missing and the seeder may fail or skip items.`,
+          `  ⚠ Aviso: "${section}" depende de "${dep}", pero "${dep}" no está activada. ` +
+            'Es posible que falten IDs y que el seeder falle u omita elementos.',
         );
       }
     }
@@ -149,12 +149,14 @@ async function runSection(key: SectionKey, ctx: ReturnType<typeof createEmptyCon
 // ---------------------------------------------------------------------------
 async function main(): Promise<void> {
   console.log('╔═══════════════════════════════════╗');
-  console.log('║   Saleor Default Structures Seed  ║');
+  console.log('║  Seed de estructuras por defecto  ║');
   console.log('╚═══════════════════════════════════╝');
 
   // Validate required env
   if (!process.env.SALEOR_API_URL) {
-    console.error('Error: SALEOR_API_URL is not set. Copy .env.example to .env and fill it in.');
+    console.error(
+      'Error: SALEOR_API_URL no está definida. Copia .env.example a .env y rellena los valores.',
+    );
     process.exit(1);
   }
 
@@ -163,15 +165,17 @@ async function main(): Promise<void> {
   const sections = resolveSections(cliArgs);
 
   if (sections.length === 0) {
-    console.log('No sections to run. Check your config or --only/--skip flags.');
+    console.log(
+      'No hay secciones para ejecutar. Revisa la configuración o los flags --only/--skip.',
+    );
     process.exit(0);
   }
 
-  console.log(`\nSections to run: ${sections.join(', ')}`);
+  console.log(`\nSecciones a ejecutar: ${sections.join(', ')}`);
   warnMissingDependencies(sections);
 
   // Authenticate
-  console.log('\n[Auth]');
+  console.log('\n[Autenticación]');
   await initAuth();
 
   // Run seeders in order, passing shared context
@@ -181,16 +185,16 @@ async function main(): Promise<void> {
     try {
       await runSection(key, ctx);
     } catch (err) {
-      console.error(`\n  ✖ Fatal error in section "${key}":`, err);
-      console.error('  Continuing with remaining sections...');
+      console.error(`\n  ✖ Error fatal en la sección "${key}":`, err);
+      console.error('  Continuando con las secciones restantes...');
     }
   }
 
-  console.log('\n✔ Seeding complete.\n');
+  console.log('\n✔ Seed completado.\n');
 }
 
 main().catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
-  console.error(`\nFatal: ${message}`);
+  console.error(`\nError fatal: ${message}`);
   process.exit(1);
 });

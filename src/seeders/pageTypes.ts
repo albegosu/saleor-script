@@ -11,7 +11,7 @@ export async function seedPageTypes(
   section: SeederSection<PageTypeConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Page Types]');
+  console.log('\n[Tipos de página]');
 
   for (const typeConfig of section.data) {
     const { attributeSlugs, ...input } = typeConfig;
@@ -74,7 +74,7 @@ export async function seedPageTypes(
           if (assignErrors.length > 0) {
             logError('PageTypeAttrAssign', pageType.name, assignErrors);
           } else {
-            console.log(`    ↳ assigned ${attributeIds.length} attribute(s)`);
+            console.log(`    ↳ asignados ${attributeIds.length} atributo(s)`);
           }
         }
       }

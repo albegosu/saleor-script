@@ -8,7 +8,7 @@ export async function seedTaxClasses(
   section: SeederSection<TaxClassCreateInput>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Tax Classes]');
+  console.log('\n[Clases de impuestos]');
 
   for (const input of section.data) {
     const { data, hasError } = await executeMutation<TaxClassCreateResult>(

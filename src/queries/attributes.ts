@@ -18,12 +18,10 @@ const ATTRIBUTES_LIST = gql`
   }
 `;
 
-interface AttributesListResult {
-  data?: {
-    attributes: {
-      pageInfo: { hasNextPage: boolean; endCursor: string | null };
-      edges: { node: { id: string; slug: string } }[];
-    };
+interface AttributesListPayload {
+  attributes: {
+    pageInfo: { hasNextPage: boolean; endCursor: string | null };
+    edges: { node: { id: string; slug: string } }[];
   };
 }
 
@@ -37,20 +35,21 @@ export async function fetchAttributeIdsBySlug(): Promise<Record<string, string>>
   const first = 100;
 
   for (;;) {
-    const result = await apollo.query<AttributesListResult>({
+    const queryResult: { data?: AttributesListPayload } = await apollo.query<AttributesListPayload>({
       query: ATTRIBUTES_LIST,
       variables: { first, after },
     });
 
-    const attributes = result.data?.attributes;
-    if (!attributes) break;
+    const attributesPage: AttributesListPayload['attributes'] | undefined =
+      queryResult.data?.attributes;
+    if (!attributesPage) break;
 
-    for (const { node } of attributes.edges) {
+    for (const { node } of attributesPage.edges) {
       slugToId[node.slug] = node.id;
     }
 
-    if (!attributes.pageInfo.hasNextPage) break;
-    after = attributes.pageInfo.endCursor ?? null;
+    if (!attributesPage.pageInfo.hasNextPage) break;
+    after = attributesPage.pageInfo.endCursor ?? null;
     if (!after) break;
   }
 

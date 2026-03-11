@@ -14,7 +14,7 @@ export async function seedProductTypes(
   section: SeederSection<ProductTypeConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Product Types]');
+  console.log('\n[Tipos de producto]');
 
   for (const typeConfig of section.data) {
     const { productAttributeSlugs, variantAttributeSlugs, ...input } = typeConfig;
@@ -52,7 +52,7 @@ export async function seedProductTypes(
     for (const attrSlug of productAttributeSlugs ?? []) {
       const attrId = ctx.attributeIds[attrSlug];
       if (!attrId) {
-        logSkip('AttributeAssign', attrSlug, 'attribute slug not found in context');
+        logSkip('AttributeAssign', attrSlug, 'el slug de atributo no existe en el contexto');
         continue;
       }
       operations.push({ id: attrId, type: 'PRODUCT' });
@@ -61,7 +61,7 @@ export async function seedProductTypes(
     for (const attrSlug of variantAttributeSlugs ?? []) {
       const attrId = ctx.attributeIds[attrSlug];
       if (!attrId) {
-        logSkip('AttributeAssign', attrSlug, 'attribute slug not found in context');
+        logSkip('AttributeAssign', attrSlug, 'el slug de atributo no existe en el contexto');
         continue;
       }
       operations.push({ id: attrId, type: 'VARIANT' });
@@ -85,7 +85,7 @@ export async function seedProductTypes(
         if (assignErrors.length > 0) {
           logError('AttributeAssign', productType.name, assignErrors);
         } else {
-          console.log(`    ↳ assigned ${operations.length} attribute(s)`);
+          console.log(`    ↳ asignados ${operations.length} atributo(s)`);
         }
       }
     }

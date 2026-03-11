@@ -14,7 +14,7 @@ export async function seedCollections(
   section: SeederSection<CollectionConfig>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Collections]');
+  console.log('\n[Colecciones]');
 
   for (const collectionConfig of section.data) {
     const { channelSlugs, ...input } = collectionConfig;
@@ -81,7 +81,7 @@ export async function seedCollections(
           if (listingErrors.length > 0) {
             logError('CollectionChannelListing', collection.name, listingErrors);
           } else {
-            console.log(`    ↳ listed on ${addChannels.length} channel(s)`);
+          console.log(`    ↳ publicada en ${addChannels.length} canal(es)`);
           }
         }
       }

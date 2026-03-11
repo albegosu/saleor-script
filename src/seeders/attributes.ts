@@ -8,7 +8,7 @@ export async function seedAttributes(
   section: SeederSection<AttributeCreateInput>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Attributes]');
+  console.log('\n[Atributos]');
 
   for (const input of section.data) {
     const { data, hasError } = await executeMutation<AttributeCreateResult>(

@@ -8,7 +8,7 @@ export async function seedWarehouses(
   section: SeederSection<WarehouseCreateInput>,
   ctx: SeedContext,
 ): Promise<void> {
-  console.log('\n[Warehouses]');
+  console.log('\n[Almacenes]');
 
   for (const input of section.data) {
     const slug = input.slug ?? slugify(input.name);
