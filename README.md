@@ -210,11 +210,11 @@ Script:
 npx tsx src/scripts/seed-sample-products.ts --count=2
 ```
 
-- **`--count`**: optional, target number of products. If omitted, the script creates **2** demo products (uno por categoría hoja, hasta 2). Si `--count` es mayor que 2, el script crea **al menos 50 productos**, distribuyéndolos entre todas las categorías hoja con slug conocido.
-- Usa la misma configuración de autenticación/entorno que `npm run seed` (lee `SALEOR_API_URL`, `SALEOR_APP_TOKEN` / `SALEOR_EMAIL` + `SALEOR_PASSWORD`).
-- Espera los JSON de exportación usados por los scripts de propagación en `src/scripts/grupo-bet/` (`attributes-export.json`, `productTypes-export.json`, `categories-subcategories-export.json`).
-- Supone que existe un canal con slug `canal-test` y al menos un almacén (intentará `default-warehouse`, luego `default`, y finalmente cualquier almacén disponible).
-- Sube imágenes de producto desde ficheros locales ubicados en `public/products/product-<n>.jpg` usando una petición multipart directamente contra la API GraphQL (requiere que esos ficheros existan).
+- **`--count`**: optional, exact number of demo products to create. If omitted, the script creates **2** demo products, choosing random leaf categories whose slugs exist in the target instance.
+- Uses the same authentication/environment configuration as `npm run seed` (reads `SALEOR_API_URL`, `SALEOR_APP_TOKEN` / `SALEOR_EMAIL` + `SALEOR_PASSWORD`).
+- Expects the export JSON files used by the propagation scripts in `src/scripts/grupo-bet/` (`attributes-export.json`, `productTypes-export.json`, `categories-subcategories-export.json`).
+- Assumes there is a channel with slug `canal-test` and at least one warehouse (it will try `default-warehouse`, then `default`, and finally any available warehouse).
+- Uploads product images from local files located at `public/products/product-<n>.png` (1-based index, up to 50 images) using a multipart request directly against the GraphQL API (those files must exist).
 
 ## Project structure
 

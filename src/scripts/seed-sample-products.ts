@@ -4,6 +4,7 @@ import path from 'node:path';
 import { initAuth, getAuthHeaders } from '../apollo/apollo-client.js';
 import { slugify, executeMutation, logError } from '../seeders/utils.js';
 import { fetchAttributeIdsBySlug } from '../queries/attributes.js';
+import { fetchAttributeChoiceIdsBySlug } from '../queries/attributeChoices.js';
 import { fetchChannelIdsBySlug } from '../queries/channels.js';
 import { fetchWarehouseIdsBySlug } from '../queries/warehouses.js';
 import { fetchCategoryIdsBySlug } from '../queries/categories.js';
@@ -31,6 +32,7 @@ interface CategoryExportNode {
   id: string;
   name: string;
   slug: string;
+  parent?: { id: string } | null;
   children?: { edges: { node: CategoryExportNode }[] };
 }
 
@@ -64,29 +66,7 @@ interface ProductTypesExport {
   };
 }
 
-interface AttributeChoiceNode {
-  id: string;
-  name: string;
-  slug: string;
-  value: string;
-}
-
-interface AttributeExportNode {
-  id: string;
-  name: string;
-  slug: string;
-  choices: {
-    edges: { node: AttributeChoiceNode }[];
-  };
-}
-
-interface AttributesExport {
-  data: {
-    attributes: {
-      edges: { node: AttributeExportNode }[];
-    };
-  };
-}
+type AttributeChoiceIdsBySlug = Record<string, string[]>;
 
 interface SampleProductSpec {
   name: string;
@@ -96,6 +76,12 @@ interface SampleProductSpec {
   basePrice: number;
   stockQuantity: number;
   imageFileIndex: number;
+}
+
+function generateBetSku(): string {
+  const randomNumber = Math.floor(Math.random() * 100000);
+  const padded = randomNumber.toString().padStart(5, '0');
+  return `BET${padded}`;
 }
 
 async function loadJson<T>(relativePath: string): Promise<T> {
@@ -213,6 +199,32 @@ function collectLeafCategories(roots: CategoryExportNode[]): CategoryExportNode[
   return leaves;
 }
 
+function buildCategoryIndex(roots: CategoryExportNode[]): Record<string, CategoryExportNode> {
+  const index: Record<string, CategoryExportNode> = {};
+
+  const visit = (node: CategoryExportNode): void => {
+    index[node.id] = node;
+    const children = node.children?.edges?.map((e) => e.node) ?? [];
+    for (const child of children) visit(child);
+  };
+
+  for (const root of roots) visit(root);
+  return index;
+}
+
+function resolveRootSlugForCategory(
+  node: CategoryExportNode,
+  index: Record<string, CategoryExportNode>,
+): string {
+  let current: CategoryExportNode = node;
+  while (current.parent?.id) {
+    const parent = index[current.parent.id];
+    if (!parent) break;
+    current = parent;
+  }
+  return current.slug;
+}
+
 function pickDefaultProductType(types: ProductTypeExportNode[]): ProductTypeExportNode {
   const bySlug = types.find((t) => t.slug === 'default-type');
   return bySlug ?? types[0];
@@ -245,6 +257,7 @@ function buildProductAttributesForType(
 function buildVariantAttributesForType(
   typeNode: ProductTypeExportNode,
   attributeIdsBySlug: Record<string, string>,
+  choiceIdsBySlug: AttributeChoiceIdsBySlug,
 ): AttributeValueInput[] {
   const attrs: AttributeValueInput[] = [];
 
@@ -252,14 +265,27 @@ function buildVariantAttributesForType(
     const id = attributeIdsBySlug[ref.slug];
     if (!id) continue;
 
-    let value = 'Demo';
-    if (ref.slug === 'garantia') value = '5';
-    else if (ref.slug === 'color') value = 'negro';
+    const choiceIds = choiceIdsBySlug[ref.slug] ?? [];
 
-    attrs.push({
-      id,
-      plainText: value,
-    });
+    if (choiceIds.length > 0) {
+      // For DROPDOWN attributes, pick the first available choice deterministically.
+      attrs.push({
+        id,
+        dropdown: {
+          id: choiceIds[0],
+        },
+      });
+    } else {
+      // Fallback for non-select attributes: use a demo plain text value.
+      let value = 'Demo';
+      if (ref.slug === 'garantia') value = '5';
+      else if (ref.slug === 'color') value = 'negro';
+
+      attrs.push({
+        id,
+        plainText: value,
+      });
+    }
   }
 
   return attrs;
@@ -272,6 +298,7 @@ async function createProductWithVariant(options: {
   channelId: string;
   warehouseId: string;
   productAttributes: AttributeValueInput[];
+  variantAttributes: AttributeValueInput[];
 }): Promise<void> {
   const { spec, productTypeId, categoryId, channelId, warehouseId } = options;
 
@@ -296,12 +323,7 @@ async function createProductWithVariant(options: {
       ],
       version: '2.30.7',
     }),
-    // NOTE: product-level attributes are intentionally skipped here because
-    // in this environment the product type is not yet configured with
-    // the attribute IDs coming from the export (Saleor returns NOT_FOUND for them).
-    // The goal of this script is to quickly populate the catalogue with
-    // navigable products; you can add attributes later as you refine your
-    // product type schema.
+    attributes: options.productAttributes,
   };
 
   const { data: productData, hasError: productHasError } = await executeMutation<ProductCreateResult>(
@@ -371,10 +393,8 @@ async function createProductWithVariant(options: {
   const variantInput: ProductVariantCreateInput = {
     product: productId,
     name: `${spec.name} Variante 1`,
-    sku: `${slug}-v1`,
-    // Skip variant attributes — current product type in this instance
-    // does not allow the attribute IDs from the export as variant attrs.
-    attributes: [],
+    sku: generateBetSku(),
+    attributes: options.variantAttributes,
     stocks: [
       {
         warehouse: warehouseId,
@@ -383,22 +403,49 @@ async function createProductWithVariant(options: {
     ],
   };
 
-  const { data: variantData, hasError: variantHasError } =
-    await executeMutation<ProductVariantCreateResult>(
+  const createVariant = async (
+    input: ProductVariantCreateInput,
+  ): Promise<{
+    result: ProductVariantCreateResult | null | undefined;
+    hasError: boolean;
+  }> => {
+    const { data, hasError } = await executeMutation<ProductVariantCreateResult>(
       () =>
         apollo.mutate({
           mutation: PRODUCT_VARIANT_CREATE,
-          variables: { input: variantInput },
+          variables: { input },
           errorPolicy: 'all',
         }),
       'ProductVariant',
       spec.name,
     );
+    return { result: data ?? null, hasError };
+  };
 
+  let { result: variantData, hasError: variantHasError } = await createVariant(variantInput);
   if (variantHasError) return;
 
-  const variantResult = variantData?.productVariantCreate;
-  const variantErrors = variantResult?.errors ?? [];
+  let variantResult = variantData?.productVariantCreate;
+  let variantErrors = variantResult?.errors ?? [];
+
+  const hasAttributesNotFoundError = variantErrors.some(
+    (e) => e.field === 'attributes' && e.code === 'NOT_FOUND',
+  );
+
+  if ((variantErrors.length > 0 || !variantResult?.productVariant) && hasAttributesNotFoundError) {
+    console.error(
+      `  ⚠ Variante de producto: "${spec.name}" tiene atributos de variante incompatibles — reintentando sin atributos de variante`,
+    );
+    const retryInput: ProductVariantCreateInput = {
+      ...variantInput,
+      attributes: [],
+    };
+    ({ result: variantData, hasError: variantHasError } = await createVariant(retryInput));
+    if (variantHasError) return;
+    variantResult = variantData?.productVariantCreate;
+    variantErrors = variantResult?.errors ?? [];
+  }
+
   if (variantErrors.length > 0 || !variantResult?.productVariant) {
     if (variantErrors.length > 0) {
       logError('ProductVariant', spec.name, variantErrors);
@@ -472,6 +519,7 @@ async function main(): Promise<void> {
   let categoryIds: Record<string, string> = {};
   let productTypeIds: Record<string, string> = {};
   let attributeIds: Record<string, string> = {};
+  let attributeChoiceIdsBySlug: AttributeChoiceIdsBySlug = {};
 
   try {
     console.log('  - Cargando canales...');
@@ -524,6 +572,7 @@ async function main(): Promise<void> {
     'src/scripts/grupo-bet/categories-subcategories-export.json',
   );
   const rootCategories = categoriesExport.data.categories.edges.map((e) => e.node);
+  const categoryIndex = buildCategoryIndex(rootCategories);
   const leafCategories = collectLeafCategories(rootCategories).filter(
     (c) => !!categoryIds[c.slug],
   );
@@ -534,79 +583,60 @@ async function main(): Promise<void> {
     );
   }
 
-  const perCategory = 5;
-  const minimumTotal = 50;
-
-  const totalLeafCount = leafCategories.length;
-  const targetTotal =
-    count > 2
-      ? Math.max(count, minimumTotal)
-      : 2;
-
-  const basePerCategory =
-    totalLeafCount > 0 ? Math.max(1, Math.floor(targetTotal / totalLeafCount)) : 1;
-
-  const selectedCategories =
-    targetTotal === 2
-      ? leafCategories.slice(0, Math.min(2, leafCategories.length))
-      : leafCategories;
-
   const specs: SampleProductSpec[] = [];
 
-  if (targetTotal === 2) {
-    selectedCategories.forEach((cat, index) => {
-      specs.push({
-        name: `Producto demo ${cat.name}`,
-        description: `Producto de ejemplo para la categoría ${cat.name}. Pensado para pruebas de catálogo y checkout en entorno de desarrollo.`,
-        categorySlug: cat.slug,
-        productTypeSlug: defaultTypeNode.slug,
-        basePrice: 10.99 + index * 5,
-        stockQuantity: 50 + index * 10,
-        imageFileIndex: index + 1,
-      });
-    });
-  } else {
-    let globalIndex = 0;
-    for (const cat of selectedCategories) {
-      const itemsForCategory = Math.max(perCategory, basePerCategory);
-      for (let i = 0; i < itemsForCategory; i += 1) {
-        specs.push({
-          name: `Producto demo ${cat.name} ${i + 1}`,
-          description: `Producto de ejemplo para la categoría ${cat.name}. Variante ${i + 1}, pensada para poblar el catálogo de pruebas.`,
-          categorySlug: cat.slug,
-          productTypeSlug: defaultTypeNode.slug,
-          basePrice: 10.99 + (globalIndex % 10) * 5,
-          stockQuantity: 40 + (globalIndex % 5) * 10,
-          imageFileIndex: globalIndex + 1,
-        });
-        globalIndex += 1;
-      }
-    }
+  // Generar exactamente "count" productos usando categorías hoja aleatorias.
+  // Si count no se pasa, parseCountFromArgs devuelve 2.
+  for (let i = 0; i < count; i += 1) {
+    const cat = leafCategories[Math.floor(Math.random() * leafCategories.length)];
+    const rootSlug = resolveRootSlugForCategory(cat, categoryIndex);
+    const typeForCategory =
+      productTypeNodes.find((t) => t.slug === rootSlug) ?? defaultTypeNode;
 
-    if (specs.length < targetTotal) {
-      let i = 0;
-      while (specs.length < targetTotal && specs.length < selectedCategories.length * perCategory) {
-        const cat = selectedCategories[i % selectedCategories.length];
-        const index = specs.length;
-        specs.push({
-          name: `Producto demo extra ${cat.name} ${index + 1}`,
-          description: `Producto adicional de ejemplo en la categoría ${cat.name}.`,
-          categorySlug: cat.slug,
-          productTypeSlug: defaultTypeNode.slug,
-          basePrice: 10.99 + (index % 10) * 5,
-          stockQuantity: 40 + (index % 5) * 10,
-          imageFileIndex: index + 1,
-        });
-        i += 1;
-      }
-    }
+    const basePrice = 10.99 + (i % 10) * 5;
+    const stockQuantity = 40 + (i % 5) * 10;
+    const imageFileIndex = (i % 50) + 1; // asumiendo hasta 50 imágenes en public/products
+
+    specs.push({
+      name: `Producto demo ${cat.name} ${i + 1}`,
+      description: `Producto de ejemplo para la categoría ${cat.name}. Variante ${i + 1}, pensada para poblar el catálogo de pruebas.`,
+      categorySlug: cat.slug,
+      productTypeSlug: typeForCategory.slug,
+      basePrice,
+      stockQuantity,
+      imageFileIndex,
+    });
   }
 
-  const productAttributes = buildProductAttributesForType(defaultTypeNode, attributeIds);
-  const variantAttributes = buildVariantAttributesForType(defaultTypeNode, attributeIds);
+  // Cargar valores (choices) actuales de atributos desde la API para atributos de variante.
+  const variantAttributeSlugs = Array.from(
+    new Set(
+      productTypeNodes
+        .flatMap((t) => t.variantAttributes)
+        .map((ref) => ref.slug),
+    ),
+  );
+  attributeChoiceIdsBySlug = await fetchAttributeChoiceIdsBySlug(variantAttributeSlugs);
+
+  const productAttributesByTypeSlug: Record<string, AttributeValueInput[]> = {};
+  const variantAttributesByTypeSlug: Record<string, AttributeValueInput[]> = {};
+
+  for (const typeNode of productTypeNodes) {
+    productAttributesByTypeSlug[typeNode.slug] = buildProductAttributesForType(
+      typeNode,
+      attributeIds,
+    );
+    variantAttributesByTypeSlug[typeNode.slug] = buildVariantAttributesForType(
+      typeNode,
+      attributeIds,
+      attributeChoiceIdsBySlug,
+    );
+  }
 
   console.log('\n[Creación de productos]');
   for (const spec of specs) {
+    const productAttributes = productAttributesByTypeSlug[spec.productTypeSlug] ?? [];
+    const variantAttributes = variantAttributesByTypeSlug[spec.productTypeSlug] ?? [];
     await createProductWithVariant({
       spec,
       productTypeId: productTypeIds[spec.productTypeSlug] ?? defaultTypeNode.id,
@@ -614,6 +644,7 @@ async function main(): Promise<void> {
       channelId,
       warehouseId,
       productAttributes,
+      variantAttributes,
     });
   }
 

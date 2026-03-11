@@ -95,9 +95,16 @@ export const PRODUCT_MEDIA_CREATE = gql`
 // Types mirroring Saleor inputs/results (minimal subset we need)
 // ---------------------------------------------------------------------------
 
+export interface AttributeValueSelectableTypeInput {
+  id?: string;
+  externalReference?: string;
+  value?: string;
+}
+
 export interface AttributeValueInput {
   id: string;
   plainText?: string;
+  dropdown?: AttributeValueSelectableTypeInput;
 }
 
 export interface ProductCreateInput {
