@@ -3,7 +3,7 @@ import type { PageConfig } from './pages.js';
 /**
  * Manufacturer pages to seed.
  * Auto-generated from files in public/manufacturers by
- * src/scripts/propagate-manufacturers-from-images.ts
+ * src/scripts/seeds/seed-manufacturers.ts
  */
 export const manufacturerPages: PageConfig[] = [
   {
