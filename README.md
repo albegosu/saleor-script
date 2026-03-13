@@ -45,9 +45,9 @@ Quick reference:
 - **`npm run seed:attributes -- <attributes-export.json>`**: Replays attributes (definitions + values) from a Saleor export JSON.
 - **`npm run seed:productTypes -- <productTypes-export.json>`**: Replays product types and their product/variant attributes from an export JSON.
 - **`npm run seed:categories -- <categories-export.json>`**: Replays categories + subcategories (tree) from an export JSON.
-- **`npm run seed:sample-products -- --count=2`**: Creates demo products using the propagated attributes/product types/categories and local product images.
+- **`npm run seed:products -- --count=2`**: Creates demo products using the propagated attributes/product types/categories and local product images.
 - **`npm run seed:manufacturers`**: Generates manufacturer pages + attributes from logo files under `public/manufacturers`.
-- **`npm run seed:blog-posts`**: Seeds demo blog posts and relaxes blog image requirements if needed.
+- **`npm run seed:posts`**: Seeds demo blog posts and relaxes blog image requirements if needed.
 
 ```bash
 # Run all enabled seeders (as configured in src/config/*.ts via src/config/index.ts)

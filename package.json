@@ -8,9 +8,9 @@
     "seed:attributes": "tsx src/scripts/seeds/seed-attributes.ts",
     "seed:productTypes": "tsx src/scripts/seeds/seed-productTypes.ts",
     "seed:categories": "tsx src/scripts/seeds/seed-categories.ts",
-    "seed:sample-products": "tsx src/scripts/seeds/seed-sample-products.ts",
+    "seed:products": "tsx src/scripts/seeds/seed-sample-products.ts",
     "seed:manufacturers": "tsx src/scripts/seeds/seed-manufacturers.ts",
-    "seed:blog-posts": "tsx src/scripts/seeds/seed-blog-posts.ts",
+    "seed:posts": "tsx src/scripts/seeds/seed-blog-posts.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

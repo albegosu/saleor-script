@@ -3,6 +3,7 @@ import { MENU_CREATE, MENU_ITEM_CREATE } from '../mutations/menu.js';
 import type { MenuCreateResult, MenuItemCreateResult } from '../mutations/menu.js';
 import type { SeederSection, MenuConfig, MenuItemConfig } from '../config/index.js';
 import { logSuccess, logError, logSkip, executeMutation, type SeedContext } from './utils.js';
+import { fetchPagesBySlug } from '../queries/pages.js';
 
 /**
  * Resolves a menu item's link IDs from SeedContext using slug references.
@@ -13,6 +14,7 @@ function resolveItemLinks(
   item: MenuItemConfig,
   ctx: SeedContext,
   itemLabel: string,
+  pagesBySlug: Record<string, { id: string; title: string; pageTypeSlug: string | null }>,
 ): { category?: string; collection?: string; page?: string; url?: string } {
   const links: { category?: string; collection?: string; page?: string; url?: string } = {};
 
@@ -43,12 +45,15 @@ function resolveItemLinks(
   }
 
   if (item.pageSlug) {
-    const id = ctx.pageIds[item.pageSlug];
+    const ctxId = ctx.pageIds[item.pageSlug];
+    const pageRecord = pagesBySlug[item.pageSlug];
+    const id = ctxId ?? pageRecord?.id;
+
     if (!id) {
       logSkip(
         'MenuItem',
         itemLabel,
-        `el slug de página "${item.pageSlug}" no existe en el contexto`,
+        `el slug de página "${item.pageSlug}" no existe ni en el contexto ni en Saleor`,
       );
     } else {
       links.page = id;
@@ -66,13 +71,14 @@ async function createMenuItems(
   items: MenuItemConfig[],
   menuId: string,
   ctx: SeedContext,
+  pagesBySlug: Record<string, { id: string; title: string; pageTypeSlug: string | null }>,
   parentId?: string,
   depth = 0,
 ): Promise<void> {
   const indent = '    ' + '  '.repeat(depth);
 
   for (const item of items) {
-    const links = resolveItemLinks(item, ctx, item.name);
+    const links = resolveItemLinks(item, ctx, item.name, pagesBySlug);
 
     const { data, hasError } = await executeMutation<MenuItemCreateResult>(
       () =>
@@ -118,7 +124,7 @@ async function createMenuItems(
     console.log(`${indent}↳ MenuItem: "${menuItem.name}"${linkSuffix} (${menuItem.id})`);
 
     if (item.children && item.children.length > 0) {
-      await createMenuItems(item.children, menuId, ctx, menuItem.id, depth + 1);
+      await createMenuItems(item.children, menuId, ctx, pagesBySlug, menuItem.id, depth + 1);
     }
   }
 }
@@ -128,6 +134,10 @@ export async function seedMenus(
   ctx: SeedContext,
 ): Promise<void> {
   console.log('\n[Menús]');
+
+  // Fetch all pages once so that menu items can link to pages created
+  // either by the generic pages seeder or by ad-hoc scripts (e.g. blog posts).
+  const pagesBySlug = await fetchPagesBySlug();
 
   for (const menuConfig of section.data) {
     const { items, ...input } = menuConfig;
@@ -159,7 +169,7 @@ export async function seedMenus(
     logSuccess('Menu', menu.name, menu.id);
 
     if (items && items.length > 0) {
-      await createMenuItems(items, menu.id, ctx);
+      await createMenuItems(items, menu.id, ctx, pagesBySlug);
     }
   }
 }
