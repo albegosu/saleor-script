@@ -42,11 +42,13 @@ cp .env.example .env
 Quick reference:
 
 - **`npm run seed`**: Seeds all enabled core sections (`taxClasses`, `warehouses`, `channels`, `shipping`, `attributes`, `productTypes`, `categories`, `collections`, `pageTypes`, `pages`, `menus`, plus manufacturer/company pages).
+- **`npm run seed:grupo-bet`**: Runs the full Grupo Bet seeding flow using the export files in `src/scripts/grupo-bet` (attributes, product types, categories, manufacturers, sample products, and blog posts) in the correct order.
+---
 - **`npm run seed:attributes -- <attributes-export.json>`**: Replays attributes (definitions + values) from a Saleor export JSON.
 - **`npm run seed:productTypes -- <productTypes-export.json>`**: Replays product types and their product/variant attributes from an export JSON.
 - **`npm run seed:categories -- <categories-export.json>`**: Replays categories + subcategories (tree) from an export JSON.
-- **`npm run seed:products -- --count=2`**: Creates demo products using the propagated attributes/product types/categories and local product images.
 - **`npm run seed:manufacturers`**: Generates manufacturer pages + attributes from logo files under `public/manufacturers`.
+- **`npm run seed:products -- --count=50`**: Creates demo products using the propagated attributes/product types/categories and local product images.
 - **`npm run seed:posts`**: Seeds demo blog posts and relaxes blog image requirements if needed.
 
 ```bash

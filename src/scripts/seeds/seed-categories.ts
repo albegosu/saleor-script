@@ -88,7 +88,7 @@ async function main(): Promise<void> {
   }
 
   console.log('╔══════════════════════════════════════╗');
-  console.log('║  Propagar categorías desde un export║');
+  console.log('║  Propagar categorías desde un export ║');
   console.log('╚══════════════════════════════════════╝');
 
   console.log('\n[Autenticación]');

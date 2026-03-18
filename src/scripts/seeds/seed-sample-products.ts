@@ -304,7 +304,7 @@ async function createProductWithVariant(options: {
 
   const slug = slugify(spec.name);
 
-  const productInput: ProductCreateInput = {
+  const productInputBase: ProductCreateInput = {
     name: spec.name,
     slug,
     productType: productTypeId,
@@ -326,21 +326,49 @@ async function createProductWithVariant(options: {
     attributes: options.productAttributes,
   };
 
-  const { data: productData, hasError: productHasError } = await executeMutation<ProductCreateResult>(
-    () =>
-      apollo.mutate({
-        mutation: PRODUCT_CREATE,
-        variables: { input: productInput },
-        errorPolicy: 'all',
-      }),
-    'Product',
-    spec.name,
-  );
+  const createProduct = async (
+    input: ProductCreateInput,
+  ): Promise<{
+    result: ProductCreateResult | null | undefined;
+    hasError: boolean;
+  }> => {
+    const { data, hasError } = await executeMutation<ProductCreateResult>(
+      () =>
+        apollo.mutate({
+          mutation: PRODUCT_CREATE,
+          variables: { input },
+          errorPolicy: 'all',
+        }),
+      'Product',
+      spec.name,
+    );
+    return { result: data ?? null, hasError };
+  };
 
+  let { result: productData, hasError: productHasError } = await createProduct(productInputBase);
   if (productHasError) return;
 
-  const productResult = productData?.productCreate;
-  const productErrors = productResult?.errors ?? [];
+  let productResult = productData?.productCreate;
+  let productErrors = productResult?.errors ?? [];
+
+  const hasProductAttributesNotFoundError = productErrors.some(
+    (e) => e.field === 'attributes' && e.code === 'NOT_FOUND',
+  );
+
+  if ((productErrors.length > 0 || !productResult?.product) && hasProductAttributesNotFoundError) {
+    console.error(
+      `  ⚠ Producto: "${spec.name}" tiene atributos de producto incompatibles — reintentando sin atributos de producto`,
+    );
+    const retryInput: ProductCreateInput = {
+      ...productInputBase,
+      attributes: [],
+    };
+    ({ result: productData, hasError: productHasError } = await createProduct(retryInput));
+    if (productHasError) return;
+    productResult = productData?.productCreate;
+    productErrors = productResult?.errors ?? [];
+  }
+
   if (productErrors.length > 0 || !productResult?.product) {
     if (productErrors.length > 0) {
       logError('Product', spec.name, productErrors);
@@ -428,11 +456,16 @@ async function createProductWithVariant(options: {
   let variantResult = variantData?.productVariantCreate;
   let variantErrors = variantResult?.errors ?? [];
 
-  const hasAttributesNotFoundError = variantErrors.some(
-    (e) => e.field === 'attributes' && e.code === 'NOT_FOUND',
+  const hasRetryableVariantAttributesError = variantErrors.some(
+    (e) =>
+      e.field === 'attributes' &&
+      (e.code === 'NOT_FOUND' || e.code === 'ATTRIBUTE_CANNOT_BE_ASSIGNED'),
   );
 
-  if ((variantErrors.length > 0 || !variantResult?.productVariant) && hasAttributesNotFoundError) {
+  if (
+    (variantErrors.length > 0 || !variantResult?.productVariant) &&
+    hasRetryableVariantAttributesError
+  ) {
     console.error(
       `  ⚠ Variante de producto: "${spec.name}" tiene atributos de variante incompatibles — reintentando sin atributos de variante`,
     );
@@ -606,6 +639,29 @@ async function main(): Promise<void> {
       stockQuantity,
       imageFileIndex,
     });
+  }
+
+  // Verificación previa de atributos: asegurar que los slugs usados por los tipos de producto
+  // existen como atributos en la instancia actual de Saleor.
+  const allAttributeSlugs = Array.from(
+    new Set(
+      productTypeNodes
+        .flatMap((t) => [...t.productAttributes, ...t.variantAttributes])
+        .map((ref) => ref.slug),
+    ),
+  );
+
+  const missingAttributeSlugs = allAttributeSlugs.filter((slug) => !attributeIds[slug]);
+  if (missingAttributeSlugs.length > 0) {
+    console.warn(
+      '\n[Advertencia] Se han detectado atributos referenciados en los tipos de producto que no existen en esta instancia de Saleor (por slug):',
+    );
+    for (const slug of missingAttributeSlugs) {
+      console.warn(`  - ${slug}`);
+    }
+    console.warn(
+      'Estos atributos se omitirán al crear productos/variantes y podrían haberse importado desde otra tienda.',
+    );
   }
 
   // Cargar valores (choices) actuales de atributos desde la API para atributos de variante.

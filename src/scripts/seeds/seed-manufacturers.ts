@@ -15,6 +15,7 @@ import {
 } from '../../mutations/page.js';
 import { apollo } from '../../apollo/apollo-client.js';
 import { manufacturerPages as existingManufacturerPages } from '../../config/manufacturers.js';
+import { gql } from '@apollo/client/core';
 
 function toTitleFromFilename(filename: string): string {
   const base = filename.replace(/\.[^.]+$/, '');
@@ -90,7 +91,7 @@ async function main(): Promise<void> {
   }
 
   console.log('╔════════════════════════════════════════════════════╗');
-  console.log('║   Seed de páginas y atributos de fabricantes      ║');
+  console.log('║   Seed de páginas y atributos de fabricantes       ║');
   console.log('╚════════════════════════════════════════════════════╝');
 
   console.log('\n[Construir manufacturerPages a partir de imágenes]');
@@ -140,6 +141,71 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  const PAGE_TYPE_ATTRIBUTES = gql`
+    query FabricantesPageTypeAttributes($id: ID!) {
+      pageType(id: $id) {
+        attributes {
+          attribute {
+            slug
+            inputType
+            valueRequired
+          }
+        }
+      }
+    }
+  `;
+
+  type PageTypeAttributeInputType =
+    | 'DROPDOWN'
+    | 'MULTISELECT'
+    | 'FILE'
+    | 'REFERENCE'
+    | 'NUMERIC'
+    | 'RICH_TEXT'
+    | 'PLAIN_TEXT'
+    | 'SWATCH'
+    | 'BOOLEAN'
+    | 'DATE'
+    | 'DATE_TIME';
+
+  interface FabricantesPageTypeAttributesPayload {
+    pageType: {
+      attributes: {
+        attribute: {
+          slug: string;
+          inputType: PageTypeAttributeInputType;
+          valueRequired: boolean;
+        };
+      }[];
+    } | null;
+  }
+
+  const requiredPageAttributesBySlug = new Map<
+    string,
+    { slug: string; inputType: PageTypeAttributeInputType }
+  >();
+
+  try {
+    const fabricantesPageTypeResult = await apollo.query<FabricantesPageTypeAttributesPayload>({
+      query: PAGE_TYPE_ATTRIBUTES,
+      variables: { id: fabricantesPageTypeId },
+    });
+
+    fabricantesPageTypeResult.data.pageType?.attributes.forEach(({ attribute }) => {
+      if (attribute.valueRequired) {
+        requiredPageAttributesBySlug.set(attribute.slug, {
+          slug: attribute.slug,
+          inputType: attribute.inputType,
+        });
+      }
+    });
+  } catch (err) {
+    console.warn(
+      '  ⚠ No se han podido cargar los atributos REQUIRED del tipo de página "fabricantes". ' +
+        'Se continuará usando solo los atributos configurados en el script (marca, activo, mostrar, logo).',
+    );
+  }
+
   console.log('\n[Crear/actualizar páginas de fabricantes]');
   for (const pageConfig of existingManufacturerPages) {
     const slug = pageConfig.slug;
@@ -159,12 +225,12 @@ async function main(): Promise<void> {
 
     attributes.push({
       id: activoId,
-      boolean: true,
+      values: ['true'],
     });
 
     attributes.push({
       id: mostrarId,
-      boolean: true,
+      values: ['true'],
     });
 
     if (logoId) {
@@ -180,6 +246,47 @@ async function main(): Promise<void> {
         console.log(
           `  ⚠ Logo: no se encontró fichero para "${pageConfig.title}" en public/${logoRelative}`,
         );
+      }
+    }
+
+    // Asegurar que todos los atributos REQUIRED del page type "fabricantes" tienen algún valor.
+    for (const [slug, meta] of requiredPageAttributesBySlug.entries()) {
+      const attributeId = attributeIds[slug];
+      if (!attributeId) continue;
+      const alreadyProvided = attributes.some((attr) => attr.id === attributeId);
+      if (alreadyProvided) continue;
+
+      if (meta.inputType === 'BOOLEAN') {
+        attributes.push({
+          id: attributeId,
+          boolean: true,
+        });
+      } else if (meta.inputType === 'RICH_TEXT') {
+        attributes.push({
+          id: attributeId,
+          richText: JSON.stringify({
+            time: Date.now(),
+            blocks: [
+              {
+                type: 'paragraph',
+                data: {
+                  text: pageConfig.title,
+                },
+              },
+            ],
+            version: '2.30.7',
+          }),
+        });
+      } else if (meta.inputType === 'PLAIN_TEXT' || meta.inputType === 'NUMERIC') {
+        attributes.push({
+          id: attributeId,
+          values: [pageConfig.title],
+        });
+      } else if (meta.inputType === 'FILE') {
+        attributes.push({
+          id: attributeId,
+          values: [`/manufacturers/${slug}-logo.png`],
+        });
       }
     }
 

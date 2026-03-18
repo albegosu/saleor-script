@@ -92,7 +92,7 @@ async function main(): Promise<void> {
   }
 
   console.log('╔════════════════════════════════════════════╗');
-  console.log('║  Propagar tipos de producto desde export  ║');
+  console.log('║  Propagar tipos de producto desde export   ║');
   console.log('╚════════════════════════════════════════════╝');
 
   console.log('\n[Autenticación]');
