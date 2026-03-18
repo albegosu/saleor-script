@@ -116,8 +116,7 @@ async function main(): Promise<void> {
 
   const marcaId = attributeIds['marca'];
   const activoId = attributeIds['activo'];
-  const mostrarId =
-    attributeIds['mostrar-en-la-home-y-pagina-de-fabricantes'];
+  const mostrarId = attributeIds['mostrar-en-la-home-y-pagina-de-fabricantes'];
   const logoId = attributeIds['logo'];
 
   if (!marcaId || !activoId || !mostrarId) {
@@ -215,22 +214,23 @@ async function main(): Promise<void> {
       id: string;
       values?: string[];
       richText?: string;
+      plainText?: string;
       boolean?: boolean;
     }[] = [];
 
     attributes.push({
       id: marcaId,
-      values: [pageConfig.title],
+      plainText: pageConfig.title,
     });
 
     attributes.push({
       id: activoId,
-      values: ['true'],
+      boolean: true,
     });
 
     attributes.push({
       id: mostrarId,
-      values: ['true'],
+      boolean: true,
     });
 
     if (logoId) {
