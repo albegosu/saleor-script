@@ -6,7 +6,7 @@ export interface CategoryConfig extends CategoryInput {
 }
 
 export const categories: SeederSection<CategoryConfig> = {
-  enabled: false,
+  enabled: true,
   data: [
     {
       name: 'Clothing',

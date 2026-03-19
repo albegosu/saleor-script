@@ -2,11 +2,11 @@ import type { WarehouseCreateInput } from '../mutations/warehouse.js';
 import type { SeederSection } from './types.js';
 
 export const warehouses: SeederSection<WarehouseCreateInput> = {
-  enabled: false,
+  enabled: true,
   data: [
     {
       name: 'Main Warehouse',
-      slug: 'main-warehouse',
+      slug: 'default-warehouse',
       address: {
         streetAddress1: '125 Main Street',
         city: 'New York',

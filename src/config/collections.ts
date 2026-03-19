@@ -7,25 +7,25 @@ export interface CollectionConfig extends CollectionCreateInput {
 }
 
 export const collections: SeederSection<CollectionConfig> = {
-  enabled: false,
+  enabled: true,
   data: [
     {
       name: 'New Arrivals',
       slug: 'new-arrivals',
       isPublished: true,
-      channelSlugs: ['web-store'],
+      channelSlugs: ['canal-test'],
     },
     {
       name: 'Sale',
       slug: 'sale',
       isPublished: true,
-      channelSlugs: ['web-store'],
+      channelSlugs: ['canal-test'],
     },
     {
       name: 'Featured',
       slug: 'featured',
       isPublished: true,
-      channelSlugs: ['web-store'],
+      channelSlugs: ['canal-test'],
     },
   ],
 };

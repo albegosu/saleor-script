@@ -10,6 +10,10 @@ export const pageTypes: SeederSection<PageTypeConfig> = {
   enabled: true,
   data: [
     {
+      name: 'Standard page',
+      slug: 'standard-page',
+    },
+    {
       name: 'Fabricantes',
       slug: 'fabricantes',
       attributeSlugs: [

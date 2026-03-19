@@ -9,7 +9,6 @@ import { collections } from './collections.js';
 import { pageTypes } from './pageTypes.js';
 import { pagesBase } from './pages.js';
 import { companyPages } from './companies.js';
-import { manufacturerPages } from './manufacturers.js';
 import { menus } from './menus.js';
 import type { SeedConfig } from './types.js';
 
@@ -27,7 +26,6 @@ export const config: SeedConfig = {
     ...pagesBase,
     data: [
       ...pagesBase.data,
-      ...manufacturerPages,
       ...companyPages,
     ],
   },

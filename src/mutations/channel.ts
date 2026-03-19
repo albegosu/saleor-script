@@ -18,6 +18,23 @@ export const CHANNEL_CREATE = gql`
   }
 `;
 
+export const CHANNEL_UPDATE = gql`
+  mutation ChannelUpdate($id: ID!, $input: ChannelUpdateInput!) {
+    channelUpdate(id: $id, input: $input) {
+      channel {
+        id
+        name
+        slug
+      }
+      errors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
 export interface ChannelCreateInput {
   name: string;
   slug: string;
@@ -34,6 +51,13 @@ export interface ChannelCreateInput {
 export interface ChannelCreateResult {
   channelCreate: {
     channel: { id: string; name: string; slug: string; currencyCode: string } | null;
+    errors: { field: string | null; message: string; code: string }[];
+  };
+}
+
+export interface ChannelUpdateResult {
+  channelUpdate: {
+    channel: { id: string; name: string; slug: string } | null;
     errors: { field: string | null; message: string; code: string }[];
   };
 }
