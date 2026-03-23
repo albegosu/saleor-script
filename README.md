@@ -14,6 +14,9 @@ Small Node.js tool that connects to a Saleor GraphQL API and initializes a new i
   - `MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES`
   - `MANAGE_PRODUCTS`
   - `MANAGE_PAGES`
+  - `MANAGE_STAFF` (required to create `permission groups`)
+
+To create `permission groups` (in `npm run seed:grupo-bet`), you must configure `SALEOR_EMAIL` and `SALEOR_PASSWORD` for a staff user. Apps cannot execute `permissionGroupCreate`.
 
 ## Setup
 

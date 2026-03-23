@@ -1,7 +1,9 @@
 import type { PageCreateInput } from '../mutations/page.js';
 import type { SeederSection } from './types.js';
 
-export interface PageConfig extends Omit<PageCreateInput, 'pageType'> {
+export interface PageConfig extends Omit<PageCreateInput, 'pageType' | 'title' | 'slug'> {
+  title: string;
+  slug: string;
   /** Slug of the page type to use */
   pageTypeSlug: string;
 }

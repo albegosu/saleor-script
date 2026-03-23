@@ -66,22 +66,15 @@ interface TokenCreateResult {
 }
 
 /**
- * Initialises the Apollo client auth token.
- * Priority: SALEOR_APP_TOKEN env var → email/password tokenCreate mutation.
+ * Initialises the Apollo client auth token for staff users.
+ * Ignores SALEOR_APP_TOKEN and uses SALEOR_EMAIL + SALEOR_PASSWORD (tokenCreate).
  */
-export async function initAuth(): Promise<void> {
-  const appToken = process.env.SALEOR_APP_TOKEN;
-  if (appToken) {
-    setAuthToken(appToken);
-    console.log('  Autenticación: usando SALEOR_APP_TOKEN');
-    return;
-  }
-
+export async function initStaffAuth(): Promise<void> {
   const email = process.env.SALEOR_EMAIL;
   const password = process.env.SALEOR_PASSWORD;
   if (!email || !password) {
     throw new Error(
-      'Autenticación no configurada. Define SALEOR_APP_TOKEN o bien SALEOR_EMAIL y SALEOR_PASSWORD en .env.',
+      'Autenticación no configurada para staff. Define SALEOR_EMAIL y SALEOR_PASSWORD en .env.',
     );
   }
 
@@ -127,4 +120,19 @@ export async function initAuth(): Promise<void> {
 
   setAuthToken(token);
   console.log('  Autenticación: JWT obtenido mediante tokenCreate');
+}
+
+/**
+ * Initialises the Apollo client auth token.
+ * Priority: SALEOR_APP_TOKEN env var → staff tokenCreate mutation.
+ */
+export async function initAuth(): Promise<void> {
+  const appToken = process.env.SALEOR_APP_TOKEN;
+  if (appToken) {
+    setAuthToken(appToken);
+    console.log('  Autenticación: usando SALEOR_APP_TOKEN');
+    return;
+  }
+
+  await initStaffAuth();
 }

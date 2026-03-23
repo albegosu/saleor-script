@@ -10,6 +10,7 @@ import { pageTypes } from './pageTypes.js';
 import { pagesBase } from './pages.js';
 import { companyPages } from './companies.js';
 import { menus } from './menus.js';
+import { permissionGroups } from './permissionGroups.js';
 import type { SeedConfig } from './types.js';
 
 export const config: SeedConfig = {
@@ -30,6 +31,7 @@ export const config: SeedConfig = {
     ],
   },
   menus,
+  permissionGroups,
 };
 
 // Re-export all types so seeders can import from a single path

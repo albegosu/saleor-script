@@ -10,6 +10,7 @@ import type { CollectionConfig } from './collections.js';
 import type { PageTypeConfig } from './pageTypes.js';
 import type { PageConfig } from './pages.js';
 import type { MenuConfig } from './menus.js';
+import type { PermissionGroupConfig } from './permissionGroups.js';
 
 export interface SeederSection<T> {
   enabled: boolean;
@@ -28,6 +29,7 @@ export interface SeedConfig {
   pageTypes: SeederSection<PageTypeConfig>;
   pages: SeederSection<PageConfig>;
   menus: SeederSection<MenuConfig>;
+  permissionGroups: SeederSection<PermissionGroupConfig>;
 }
 
 export type { ProductAttributeAssignInput };

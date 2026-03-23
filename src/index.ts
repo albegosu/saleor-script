@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { initAuth } from './apollo/apollo-client.js';
+import { initAuth, initStaffAuth } from './apollo/apollo-client.js';
 import { config } from './config/index.js';
 import { createEmptyContext } from './seeders/utils.js';
 import { seedTaxClasses } from './seeders/taxClasses.js';
@@ -13,6 +13,7 @@ import { seedCollections } from './seeders/collections.js';
 import { seedPageTypes } from './seeders/pageTypes.js';
 import { seedPages } from './seeders/pages.js';
 import { seedMenus } from './seeders/menus.js';
+import { seedPermissionGroups } from './seeders/permissionGroups.js';
 import type { SeedConfig } from './config/index.js';
 
 // ---------------------------------------------------------------------------
@@ -32,6 +33,7 @@ const ALL_SECTIONS: SectionKey[] = [
   'pageTypes',
   'pages',
   'menus',
+  'permissionGroups',
 ];
 
 /**
@@ -141,6 +143,9 @@ async function runSection(key: SectionKey, ctx: ReturnType<typeof createEmptyCon
     case 'menus':
       await seedMenus(config.menus, ctx);
       break;
+    case 'permissionGroups':
+      await seedPermissionGroups(config.permissionGroups);
+      break;
   }
 }
 
@@ -176,7 +181,11 @@ async function main(): Promise<void> {
 
   // Authenticate
   console.log('\n[Autenticación]');
-  await initAuth();
+  if (sections.includes('permissionGroups')) {
+    await initStaffAuth();
+  } else {
+    await initAuth();
+  }
 
   // Run seeders in order, passing shared context
   const ctx = createEmptyContext();

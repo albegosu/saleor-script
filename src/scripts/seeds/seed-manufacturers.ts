@@ -349,14 +349,15 @@ async function main(): Promise<void> {
         continue;
       }
 
-      logSuccess('PageCreate', created.page.title, created.page.id);
+      const createdPage = created!.page;
+      logSuccess('PageCreate', createdPage.title, createdPage.id);
 
       const { data, hasError } = await executeMutation<PageUpdateResult>(
         () =>
           apollo.mutate({
             mutation: PAGE_UPDATE,
             variables: {
-              id: created.page.id,
+              id: createdPage.id,
               input: {
                 attributes,
               },
