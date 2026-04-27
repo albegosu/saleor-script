@@ -65,12 +65,23 @@ export interface ShippingZoneCreateInput {
   description?: string;
 }
 
+export type PostalCodeRuleInclusionType = 'INCLUDE' | 'EXCLUDE';
+
+export interface ShippingPostalCodeRulesCreateInputRange {
+  start: string;
+  end?: string;
+}
+
 export interface ShippingPriceInput {
   name: string;
   shippingZone: string;
   type: ShippingMethodType;
-  minimumOrderWeight?: { value: number; unit: string };
-  maximumOrderWeight?: { value: number; unit: string };
+  minimumOrderWeight?: number;
+  maximumOrderWeight?: number;
+  addPostalCodeRules?: ShippingPostalCodeRulesCreateInputRange[];
+  inclusionType?: PostalCodeRuleInclusionType;
+  minimumDeliveryDays?: number;
+  maximumDeliveryDays?: number;
 }
 
 export interface ShippingMethodChannelListingInput {
