@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { gql } from '@apollo/client/core';
-import { initAuth, apollo } from '../../apollo/apollo-client.js';
+import { initAuth, initStaffAuth, apollo } from '../../apollo/apollo-client.js';
 import { executeMutation, logError, logSuccess } from '../../seeders/utils.js';
 import {
   PAGE_CREATE,
@@ -11,8 +11,6 @@ import {
   ATTRIBUTE_UPDATE,
   type AttributeUpdateResult,
 } from '../../mutations/attribute.js';
-import { fetchAttributeIdsBySlug } from '../../queries/attributes.js';
-
 const PAGE_TYPES_QUERY = gql`
   query PageTypesForBlogSeed($first: Int!) {
     pageTypes(first: $first) {
@@ -88,6 +86,51 @@ async function fetchPageTypeIdBySlug(slug: string): Promise<string> {
   }
 
   return match.id;
+}
+
+/** Serialises plain text as Saleor / Editor.js JSON for RICH_TEXT page attributes. */
+function editorJsPayloadFromText(text: string): string {
+  return JSON.stringify({
+    time: Date.now(),
+    blocks: [
+      {
+        type: 'paragraph',
+        data: { text },
+      },
+    ],
+    version: '2.30.7',
+  });
+}
+
+/**
+ * Resolves attribute id and input type by exact slug (search filter can return multiple rows).
+ *
+ * @param slug - Attribute slug
+ */
+async function fetchAttributeMetaForSlug(
+  slug: string,
+): Promise<{ id: string; inputType: string; valueRequired: boolean } | null> {
+  const { data, errors } = await apollo.query<AttributeBySlugPayload>({
+    query: ATTRIBUTE_BY_SLUG_QUERY,
+    variables: { slug },
+    errorPolicy: 'all',
+    fetchPolicy: 'network-only',
+  });
+
+  if (errors?.length || !data?.attributes?.edges?.length) {
+    return null;
+  }
+
+  const match = data.attributes.edges.map(({ node }) => node).find((node) => node.slug === slug);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    id: match.id,
+    inputType: match.inputType,
+    valueRequired: match.valueRequired,
+  };
 }
 
 interface PageAttributeValueInput {
@@ -216,7 +259,11 @@ async function seedBlogPosts(): Promise<void> {
   }
 
   console.log('\n[Autenticación]');
-  await initAuth();
+  if (process.env.SALEOR_EMAIL && process.env.SALEOR_PASSWORD) {
+    await initStaffAuth();
+  } else {
+    await initAuth();
+  }
 
   await relaxBlogImageAttributeIfNeeded();
 
@@ -225,25 +272,46 @@ async function seedBlogPosts(): Promise<void> {
   console.log(`  PageType "post" → ${pageTypeId}`);
 
   console.log('\n[Resolviendo atributos del blog por slug]');
-  const attributeIdsBySlug = await fetchAttributeIdsBySlug();
-  const titleAttrId = attributeIdsBySlug['title-post'];
-  const contentAttrId = attributeIdsBySlug['content-post'];
+  const titleMeta = await fetchAttributeMetaForSlug('title-post');
+  const contentMeta = await fetchAttributeMetaForSlug('content-post');
+
+  if (!titleMeta || !contentMeta) {
+    console.error(
+      'Error: no se encontraron atributos "title-post" y/o "content-post" en la API. ' +
+        'Ejecuta antes el seed de atributos (export o config).',
+    );
+    process.exit(1);
+  }
+
+  console.log(
+    `  title-post → ${titleMeta.inputType}; content-post → ${contentMeta.inputType}`,
+  );
 
   console.log('\n[Creación de páginas del blog]');
 
   for (const config of blogPostConfigs) {
     const attributes: PageAttributeValueInput[] = [];
 
-    if (titleAttrId) {
+    if (titleMeta.inputType === 'RICH_TEXT') {
       attributes.push({
-        id: titleAttrId,
+        id: titleMeta.id,
+        richText: editorJsPayloadFromText(config.title),
+      });
+    } else {
+      attributes.push({
+        id: titleMeta.id,
         plainText: config.title,
       });
     }
 
-    if (contentAttrId) {
+    if (contentMeta.inputType === 'RICH_TEXT') {
       attributes.push({
-        id: contentAttrId,
+        id: contentMeta.id,
+        richText: editorJsPayloadFromText(config.content),
+      });
+    } else {
+      attributes.push({
+        id: contentMeta.id,
         plainText: config.content,
       });
     }

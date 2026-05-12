@@ -5,7 +5,7 @@ import type {
   ChannelCreateResult,
   ChannelUpdateResult,
 } from '../mutations/channel.js';
-import { CHANNEL_SLUG_TEST } from '../config/channels.js';
+import { CHANNEL_SLUG } from '../config/channels.js';
 import type { SeederSection } from '../config/index.js';
 import { fetchChannelIdsBySlug } from '../queries/channels.js';
 import { resolveDefaultWarehouseId } from '../queries/warehouses.js';
@@ -25,14 +25,14 @@ async function ensureDefaultWarehouseOnTestChannel(ctx: SeedContext): Promise<vo
     return;
   }
 
-  let channelId = ctx.channelIds[CHANNEL_SLUG_TEST];
+  let channelId = ctx.channelIds[CHANNEL_SLUG];
   if (!channelId) {
     const bySlug = await fetchChannelIdsBySlug();
-    channelId = bySlug[CHANNEL_SLUG_TEST];
+    channelId = bySlug[CHANNEL_SLUG];
   }
   if (!channelId) {
     console.warn(
-      `  ⚠ Canal test: el canal con slug "${CHANNEL_SLUG_TEST}" no existe; no se asigna almacén.`,
+      `  ⚠ Canal test: el canal con slug "${CHANNEL_SLUG}" no existe; no se asigna almacén.`,
     );
     return;
   }
@@ -45,7 +45,7 @@ async function ensureDefaultWarehouseOnTestChannel(ctx: SeedContext): Promise<vo
         errorPolicy: 'all',
       }),
     'ChannelUpdate',
-    CHANNEL_SLUG_TEST,
+    CHANNEL_SLUG,
   );
 
   if (hasError) return;
@@ -54,7 +54,7 @@ async function ensureDefaultWarehouseOnTestChannel(ctx: SeedContext): Promise<vo
   const errors = result?.errors ?? [];
 
   if (errors.length > 0) {
-    logError('ChannelUpdate', CHANNEL_SLUG_TEST, errors);
+    logError('ChannelUpdate', CHANNEL_SLUG, errors);
     return;
   }
 

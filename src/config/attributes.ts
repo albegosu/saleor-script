@@ -60,24 +60,7 @@ export const attributes: SeederSection<AttributeCreateInput> = {
       valueRequired: true,
       visibleInStorefront: false,
     },
-    {
-      name: 'Activo',
-      slug: 'activo',
-      type: 'PAGE_TYPE',
-      entityType: 'PAGE',
-      inputType: 'BOOLEAN',
-      valueRequired: true,
-      visibleInStorefront: false,
-    },
-    {
-      name: 'Logo',
-      slug: 'logo',
-      type: 'PAGE_TYPE',
-      entityType: 'PAGE',
-      inputType: 'FILE',
-      valueRequired: false,
-      visibleInStorefront: false,
-    },
+    // `activo` and `logo` are defined above (manufacturer block); reuse those slugs for Empresa page type.
     {
       name: 'CIF/NIF',
       slug: 'cifnif',

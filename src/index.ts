@@ -6,7 +6,7 @@ import { seedTaxClasses } from './seeders/taxClasses.js';
 import { seedWarehouses } from './seeders/warehouses.js';
 import { seedChannels } from './seeders/channels.js';
 import { seedShipping } from './seeders/shipping.js';
-import { seedAttributes } from './seeders/attributes.js';
+import { seedAttributes, hydrateAttributeIdsFromApi } from './seeders/attributes.js';
 import { seedProductTypes } from './seeders/productTypes.js';
 import { seedCategories } from './seeders/categories.js';
 import { seedCollections } from './seeders/collections.js';
@@ -37,14 +37,15 @@ const ALL_SECTIONS: SectionKey[] = [
 ];
 
 /**
- * Dependencies: a section may only run after the sections it depends on.
- * Used to warn the user when a required dependency is being skipped.
+ * Direct dependencies: each section must run after these sections (transitive
+ * closure is applied in {@link expandSectionsWithDependencies}).
  */
 const DEPENDENCIES: Partial<Record<SectionKey, SectionKey[]>> = {
   channels: ['taxClasses', 'warehouses'],
   shipping: ['channels', 'warehouses'],
   productTypes: ['attributes'],
   collections: ['channels'],
+  pageTypes: ['attributes'],
   pages: ['pageTypes'],
   menus: ['categories', 'collections', 'pages'],
 };
@@ -85,6 +86,55 @@ function resolveSections(
   }
 
   return active;
+}
+
+/**
+ * Adds any missing prerequisite sections and returns the list sorted like
+ * {@link ALL_SECTIONS}. Fails if a dependency is `--skip`ped or disabled in config.
+ *
+ * @param sections - Sections selected after `--only` / `--skip` / `enabled` flags
+ * @param skip - Section keys passed with `--skip` (must not block a required dep)
+ * @returns Same sections plus dependencies, in canonical seed order
+ */
+function expandSectionsWithDependencies(
+  sections: SectionKey[],
+  skip: SectionKey[],
+): SectionKey[] {
+  const skipSet = new Set(skip);
+  const expanded = new Set<SectionKey>(sections);
+
+  for (;;) {
+    let addedAny = false;
+    for (const section of [...expanded]) {
+      const deps = DEPENDENCIES[section];
+      if (!deps) continue;
+
+      for (const dep of deps) {
+        if (skipSet.has(dep)) {
+          console.error(
+            `Error: la sección "${section}" requiere "${dep}", pero "${dep}" está en --skip. ` +
+              `Quita "${dep}" de --skip o no ejecutes "${section}".`,
+          );
+          process.exit(1);
+        }
+
+        if (!expanded.has(dep)) {
+          if (!config[dep].enabled) {
+            console.error(
+              `Error: "${section}" requiere que "${dep}" se ejecute antes, pero "${dep}" está ` +
+                `deshabilitada en la configuración (src/config). Actívala o ajusta --only.`,
+            );
+            process.exit(1);
+          }
+          expanded.add(dep);
+          addedAny = true;
+        }
+      }
+    }
+    if (!addedAny) break;
+  }
+
+  return [...expanded].sort((a, b) => ALL_SECTIONS.indexOf(a) - ALL_SECTIONS.indexOf(b));
 }
 
 function warnMissingDependencies(sections: SectionKey[]): void {
@@ -167,13 +217,22 @@ async function main(): Promise<void> {
 
   // Resolve which sections to run
   const cliArgs = parseCliArgs();
-  const sections = resolveSections(cliArgs);
+  const requested = resolveSections(cliArgs);
 
-  if (sections.length === 0) {
+  if (requested.length === 0) {
     console.log(
       'No hay secciones para ejecutar. Revisa la configuración o los flags --only/--skip.',
     );
     process.exit(0);
+  }
+
+  const sections = expandSectionsWithDependencies(requested, cliArgs.skip);
+  const injected = sections.filter((key) => !requested.includes(key));
+  if (injected.length > 0) {
+    console.log(
+      `\nSecciones añadidas por dependencias: ${injected.join(', ')} ` +
+        '(se ejecutan antes que las que las requieren).',
+    );
   }
 
   console.log(`\nSecciones a ejecutar: ${sections.join(', ')}`);
@@ -192,7 +251,11 @@ async function main(): Promise<void> {
 
   for (const key of sections) {
     try {
-      await runSection(key, ctx);
+      if (key === 'attributes' && injected.includes('attributes')) {
+        await hydrateAttributeIdsFromApi(ctx);
+      } else {
+        await runSection(key, ctx);
+      }
     } catch (err) {
       console.error(`\n  ✖ Error fatal en la sección "${key}":`, err);
       console.error('  Continuando con las secciones restantes...');

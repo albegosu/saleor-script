@@ -11,7 +11,7 @@
     "seed:manufacturers": "tsx src/scripts/seeds/seed-manufacturers.ts",
     "seed:products": "tsx src/scripts/seeds/seed-sample-products.ts",
     "seed:posts": "tsx src/scripts/seeds/seed-blog-posts.ts",
-    "seed:grupo-bet": "npm run seed:attributes -- src/scripts/grupo-bet/attributes-export.json && npm run seed:productTypes -- src/scripts/grupo-bet/productTypes-export.json && npm run seed:categories -- src/scripts/grupo-bet/categories-subcategories-export.json && npm run seed -- --only=permissionGroups && npm run seed:manufacturers && npm run seed:products -- --count=50 && npm run seed:posts",
+    "seed:grupo-bet": "npm run seed:attributes -- src/scripts/grupo-bet/attributes-export.json && npm run seed:productTypes -- src/scripts/grupo-bet/productTypes-export.json && npm run seed:categories -- src/scripts/grupo-bet/categories-subcategories-export.json && npm run seed -- --only=pageTypes,permissionGroups && npm run seed:manufacturers && npm run seed:posts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

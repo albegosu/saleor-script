@@ -50,6 +50,7 @@ The orchestrator always runs sections in this order:
 9. Page types
 10. Pages
 11. Menus
+12. Permission groups (staff JWT only; see `README.md`)
 
 Later seeders only use IDs from the context; they never hard-code UUIDs. This keeps the flow repeatable across environments and Saleor instances.
 
@@ -128,12 +129,14 @@ Once this script has been run, the `Blog` menu (seeded by `npm run seed`) points
 
 The following scripts replay data exported from another Saleor instance into the current target:
 
-- `src/scripts/seeds/seed-attributes-from-export.ts`
+- `src/scripts/seeds/seed-attributes.ts`
 - `src/scripts/seeds/seed-productTypes.ts`
 - `src/scripts/seeds/seed-categories.ts`
 - `src/scripts/seeds/seed-sample-products.ts`
 
 They are documented in detail in `README.md` and should be run in the given order (attributes → product types → categories → sample products) when cloning an existing catalog.
+
+For a single command that covers the usual Grupo Bet bootstrap (exports, partial core seed for `pageTypes` and `permissionGroups`, manufacturers, blog posts), use `npm run seed:grupo-bet` as described in `README.md`.
 
 ## Adding new seed sections
 

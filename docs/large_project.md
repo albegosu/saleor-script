@@ -33,7 +33,8 @@ my-ui-repo/
 │       ├── mutations/            # same mutations the UI uses
 │       ├── seeders/
 │       ├── config/
-│       │   └── defaults.ts
+│       │   ├── index.ts
+│       │   └── *.ts            # one file per seeder section
 │       └── index.ts
 └── package.json
 ```

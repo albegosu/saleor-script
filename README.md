@@ -45,8 +45,7 @@ cp .env.example .env
 Quick reference:
 
 - **`npm run seed`**: Seeds all enabled core sections (`taxClasses`, `warehouses`, `channels`, `shipping`, `attributes`, `productTypes`, `categories`, `collections`, `pageTypes`, `pages`, `menus`, plus manufacturer/company pages).
-- **`npm run seed:grupo-bet`**: Runs the full Grupo Bet seeding flow using the export files in `src/scripts/grupo-bet` (attributes, product types, categories, manufacturers, sample products, and blog posts) in the correct order.
----
+- **`npm run seed:grupo-bet`**: Primary flow for a new Grupo Bet instance: replays `src/scripts/grupo-bet` exports (attributes, product types, categories), runs `npm run seed -- --only=pageTypes,permissionGroups` (page types need export attributes; permission groups need staff JWT), then `seed:manufacturers` and `seed:posts`. Demo products are **not** part of this script; run `npm run seed:products` separately if you need them.
 - **`npm run seed:attributes -- <attributes-export.json>`**: Replays attributes (definitions + values) from a Saleor export JSON.
 - **`npm run seed:productTypes -- <productTypes-export.json>`**: Replays product types and their product/variant attributes from an export JSON.
 - **`npm run seed:categories -- <categories-export.json>`**: Replays categories + subcategories (tree) from an export JSON.
@@ -61,7 +60,7 @@ npm run seed
 
 ### Available section names
 
-`taxClasses` · `warehouses` · `channels` · `shipping` · `attributes` · `productTypes` · `categories` · `collections` · `pageTypes` · `pages` · `menus`
+`taxClasses` · `warehouses` · `channels` · `shipping` · `attributes` · `productTypes` · `categories` · `collections` · `pageTypes` · `pages` · `menus` · `permissionGroups`
 
 ## Customising defaults
 
@@ -115,11 +114,23 @@ Categories
 Page Types → Pages
 ```
 
-The script warns you if you run a section whose dependency was skipped (e.g. running `collections` without `channels`).
+`pageTypes` requires `attributes` (page types assign attribute IDs). If you use `--only=pageTypes` (or anything that implies it, e.g. `--only=menus`), the runner **adds missing prerequisite sections** automatically. When `attributes` was **only** added that way (not listed in `--only`), it **loads IDs from the API** instead of running `ATTRIBUTE_CREATE` from config, so export-based runs do not hit UNIQUE slug errors.
+
+If you list `attributes` explicitly in `--only`, the full config-driven attribute seed still runs.
+
+If a required dependency is disabled in `src/config` or is `--skip`ped, the process exits with an error instead of continuing with broken references.
+
+The script still warns when a declared dependency is missing from the active set (should not happen after expansion).
+
+**`seed:manufacturers`:** if `SALEOR_EMAIL` and `SALEOR_PASSWORD` are set, that script uses staff JWT (same idea as `permissionGroups` in the main seed). With only `SALEOR_APP_TOKEN`, some `pages` / `pageTypes` queries may return HTTP 400 depending on app permissions.
 
 ## Project-specific seeding flow
 
 For this repository, the typical flow to fully prepare a new Saleor instance (catalog, products, manufacturers, blog) is:
+
+**Grupo Bet (recommended):** run `npm run seed:grupo-bet` for the standard bootstrap: export replay, orchestrator `--only=pageTypes,permissionGroups`, manufacturers, and blog posts. Run `npm run seed:products` separately if you want demo catalog items.
+
+For manual or customised flows, use the steps below.
 
 0. (Optional, only when cloning an existing catalog and creating demo products) Seed catalog structures and sample products from exports, in this exact order (see detailed section above):
 
@@ -268,7 +279,7 @@ npx tsx src/scripts/seeds/seed-sample-products.ts --count=2
 - **`--count`**: optional, exact number of demo products to create. If omitted, the script creates **2** demo products, choosing random leaf categories whose slugs exist in the target instance.
 - Uses the same authentication/environment configuration as `npm run seed` (reads `SALEOR_API_URL`, `SALEOR_APP_TOKEN` / `SALEOR_EMAIL` + `SALEOR_PASSWORD`).
 - Expects the export JSON files used by the propagation scripts in `src/scripts/grupo-bet/` (`attributes-export.json`, `productTypes-export.json`, `categories-subcategories-export.json`).
-- Assumes there is a channel with slug `canal-test` and at least one warehouse (it will try `default-warehouse`, then `default`, and finally any available warehouse).
+- Assumes there is a channel with slug `betsolar-test` and at least one warehouse (it will try `default-warehouse`, then `default`, and finally any available warehouse).
 - Uploads product images from local files located at `public/products/product-<n>.png` (1-based index, up to 50 images) using a multipart request directly against the GraphQL API (those files must exist).
 
 ## Project structure
@@ -279,7 +290,8 @@ src/
 ├── apollo/
 │   └── apollo-client.ts      # Apollo Client (mirrors production pattern)
 ├── config/
-│   └── defaults.ts           # ← edit this to customise seed data
+│   ├── index.ts              # merges all `SeederSection`s into `SeedConfig`
+│   └── *.ts                  # one file per section (edit `enabled` / `data` here)
 ├── mutations/                # gql-tagged GraphQL mutation documents + TS types
 │   ├── taxClass.ts
 │   ├── warehouse.ts
@@ -290,7 +302,10 @@ src/
 │   ├── category.ts
 │   ├── collection.ts
 │   ├── pageType.ts
-│   └── page.ts
+│   ├── page.ts
+│   ├── menu.ts
+│   ├── permissionGroup.ts
+│   └── product.ts
 ├── scripts/                  # one-off seed scripts (exports, demo data, etc.)
 │   └── seeds/
 │       ├── seed-blog-posts.ts
@@ -310,7 +325,9 @@ src/
     ├── categories.ts
     ├── collections.ts
     ├── pageTypes.ts
-    └── pages.ts
+    ├── pages.ts
+    ├── menus.ts
+    └── permissionGroups.ts
 ```
 
 ## Reusing mutations in Apollo projects

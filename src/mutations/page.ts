@@ -41,7 +41,15 @@ export interface PageInput {
   isPublished?: boolean;
   publishedAt?: string;
   seo?: { title?: string; description?: string };
-  attributes?: { id: string; values?: string[]; richText?: string; boolean?: boolean }[];
+  attributes?: {
+    id: string;
+    values?: string[];
+    richText?: string;
+    plainText?: string;
+    boolean?: boolean;
+    file?: string;
+    contentType?: string;
+  }[];
 }
 
 export interface PageCreateInput extends PageInput {

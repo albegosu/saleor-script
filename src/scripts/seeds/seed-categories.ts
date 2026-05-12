@@ -50,12 +50,8 @@ function toCategoryConfig(node: CategoryExportNode): CategoryConfig {
     }
   }
 
-  if (node.backgroundImage) {
-    config.backgroundImage = node.backgroundImage.url;
-    if (node.backgroundImage.alt) {
-      config.backgroundImageAlt = node.backgroundImage.alt;
-    }
-  }
+  // Do not map backgroundImage from export: CategoryInput expects an Upload, not a URL;
+  // passing a thumbnail URL makes Saleor respond with "File is required".
 
   if (node.children && node.children.edges.length > 0) {
     config.children = node.children.edges.map(({ node: child }) => toCategoryConfig(child));

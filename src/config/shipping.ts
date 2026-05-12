@@ -57,7 +57,7 @@ export const shipping: SeederSection<ShippingZoneConfig> = {
       name: 'Zona envío test',
       countries: ['ES'],
       default: false,
-      channelSlugs: ['canal-test'],
+      channelSlugs: ['betsolar-test'],
       warehouseSlugs: ['default-warehouse'],
       methods: [
         {
@@ -65,7 +65,7 @@ export const shipping: SeederSection<ShippingZoneConfig> = {
           type: 'PRICE',
           currencyCode: 'EUR',
           channelPrices: {
-            'canal-test': 15.99,
+            'betsolar-test': 15.99,
           },
           minimumOrderPrice: 0,
           maximumOrderPrice: 10000,

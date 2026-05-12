@@ -13,19 +13,19 @@ export const collections: SeederSection<CollectionConfig> = {
       name: 'New Arrivals',
       slug: 'new-arrivals',
       isPublished: true,
-      channelSlugs: ['canal-test'],
+      channelSlugs: ['betsolar-test'],
     },
     {
       name: 'Sale',
       slug: 'sale',
       isPublished: true,
-      channelSlugs: ['canal-test'],
+      channelSlugs: ['betsolar-test'],
     },
     {
       name: 'Featured',
       slug: 'featured',
       isPublished: true,
-      channelSlugs: ['canal-test'],
+      channelSlugs: ['betsolar-test'],
     },
   ],
 };

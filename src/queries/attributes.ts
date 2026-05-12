@@ -35,10 +35,12 @@ export async function fetchAttributeIdsBySlug(): Promise<Record<string, string>>
   const first = 100;
 
   for (;;) {
-    const queryResult: { data?: AttributesListPayload } = await apollo.query<AttributesListPayload>({
-      query: ATTRIBUTES_LIST,
-      variables: { first, after },
-    });
+    const queryResult: { data?: AttributesListPayload; errors?: readonly { message: string }[] } =
+      await apollo.query<AttributesListPayload>({
+        query: ATTRIBUTES_LIST,
+        variables: { first, after },
+        errorPolicy: 'all',
+      });
 
     const attributesPage: AttributesListPayload['attributes'] | undefined =
       queryResult.data?.attributes;

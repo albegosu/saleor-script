@@ -582,9 +582,9 @@ async function main(): Promise<void> {
     throw err;
   }
 
-  const channelId = channelIds['canal-test'];
+  const channelId = channelIds['betsolar-test'];
   if (!channelId) {
-    throw new Error('El canal "canal-test" no existe en la API.');
+    throw new Error('El canal "betsolar-test" no existe en la API.');
   }
 
   const warehouseId =
